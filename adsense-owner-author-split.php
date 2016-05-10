@@ -1,6 +1,6 @@
 <?php
 /**
- * @since 		1.0.0
+ * @since       1.0.0
  * @package     Adsense_Owner_Author_Split
  *
  * Plugin Name:     Adsense Owner/Author Split
