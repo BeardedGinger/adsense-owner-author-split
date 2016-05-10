@@ -1,7 +1,7 @@
 <?php
 /**
  * @since       1.0.0
- * @package     Adsense_Owner_Author_Split
+ * @package     adsense-owner-author-split
  *
  * Plugin Name:     Adsense Owner/Author Split
  * Plugin URI:      https://github.com/BeardedGinger/adsense-owner-author-split
