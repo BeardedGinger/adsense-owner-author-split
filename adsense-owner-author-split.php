@@ -21,4 +21,10 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 include_once( 'includes/Main.php' );
-include_once( 'admin/User_Profile_Settings.php' );
+include_once( 'admin/Admin.php' );
+
+function gingerbeard_adsense_owner_author_split() {
+	new GingerBeard\Adsense_Owner_Author_Split\Adsense_Owner_Author_Split();
+}
+
+gingerbeard_adsense_owner_author_split();

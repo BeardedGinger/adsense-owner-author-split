@@ -48,8 +48,8 @@ class Ads {
 	 * @since     1.0.0
 	 * @access    public
 	 */
-	public function above_content_ad() {
-
+	public static function above_content_ad() {
+		echo 'above content ad';
 	}
 
 	/**
@@ -58,8 +58,8 @@ class Ads {
 	 * @since     1.0.0
 	 * @access    public
 	 */
-	public function below_content_ad() {
-
+	public static function below_content_ad() {
+		echo 'below content ad';
 	}
 
 	/**
