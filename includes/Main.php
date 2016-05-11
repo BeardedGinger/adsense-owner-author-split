@@ -59,8 +59,4 @@ class Adsense_Owner_Author_Split {
 
 	}
 
-	private function test_output() {
-		echo '<p>test output</p>';
-	}
-
  }
