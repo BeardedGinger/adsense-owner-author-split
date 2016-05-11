@@ -19,3 +19,6 @@
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
+
+include_once( 'includes/Main.php' );
+include_once( 'admin/User_Profile_Settings.php' );

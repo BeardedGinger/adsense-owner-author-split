@@ -9,9 +9,9 @@
  * @author     Josh Mallard <josh@limecuda.com>
  */
 
-namespace LimeCuda\Author_Owner_Author_Split;
+namespace GingerBeard\Adsense_Owner_Author_Split\Content_Ads;
 
-class Content_Ads {
+class Ads {
 
 	/**
 	 * Author Adsense ID
@@ -39,7 +39,7 @@ class Content_Ads {
 	public function __construct() {
 
 		$this->set_global_adsense_id();
-		$this->set_author_adsense_id()
+		$this->set_author_adsense_id();
 	}
 
 	/**
@@ -87,6 +87,13 @@ class Content_Ads {
 
 		global $post;
 
+		$author_id = $post->post_author;
+		$adsense_id = get_user_meta( $author_id, 'aoas_author_adsense_id', true );
 
+		if( $adsense_id ) {
+			$this->author_adsense_id = $adsense_id;
+		} else {
+			$this->author_adsense_id = $this->global_adsense_id;
+		}
 	}
 }
