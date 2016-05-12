@@ -31,6 +31,14 @@ class Admin {
 
 		// Add the metabox for the new settings
 		add_action( 'genesis_theme_settings_metaboxes', array( Global_Settings\Global_Settings::instance(), 'metabox' ) );
+
+		// Add the user profile fields
+		add_action( 'show_user_profile', array( 'GingerBeard\Adsense_Owner_Author_Split\Admin\User_Profile_Setting\Profile_Setting', 'user_meta' ) );
+		add_action( 'edit_user_profile', array( 'GingerBeard\Adsense_Owner_Author_Split\Admin\User_Profile_Setting\Profile_Setting', 'user_meta' ) );
+
+		// Save user profile
+		add_action( 'personal_options_update', array( 'GingerBeard\Adsense_Owner_Author_Split\Admin\User_Profile_Setting\Profile_Setting', 'save_meta' ) );
+		add_action( 'edit_user_profile_update', array( 'GingerBeard\Adsense_Owner_Author_Split\Admin\User_Profile_Setting\Profile_Setting', 'save_meta' ) );
 	}
 
 	/**

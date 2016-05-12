@@ -18,7 +18,7 @@ class Global_Settings {
 	/**
 	 * Used for getting an instance of this class
 	 *
-	 * @since 2.0.0
+	 * @since 1.0.0
 	 */
 	public static function instance() {
 		if ( empty( self::$instance ) ) {
@@ -94,10 +94,7 @@ class Global_Settings {
 	 * @since     1.0.0
 	 * @access    public
 	 */
-	public function metabox_fields() {
-
-		ob_start();
-		?>
+	public function metabox_fields() { ?>
 
 		<table class="form-table">
 			<tbody>
@@ -142,6 +139,5 @@ class Global_Settings {
 		</table>
 
 	<?php
-		echo ob_get_clean();
 	}
 }
