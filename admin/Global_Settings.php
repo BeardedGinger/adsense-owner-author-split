@@ -94,7 +94,10 @@ class Global_Settings {
 	 * @since     1.0.0
 	 * @access    public
 	 */
-	public function metabox_fields() { ?>
+	public function metabox_fields() {
+
+		ob_start();
+		?>
 
 		<table class="form-table">
 			<tbody>
@@ -106,9 +109,39 @@ class Global_Settings {
 					</td>
 				</tr>
 
+				<tr valign="top">
+					<th scope="row"><label for="above_content_owner_weight"><?php _e( 'Above Content Ad Weight', 'adsense_owner_author_split' ); ?></label></th>
+					<td>
+						<p><input type="number" min="1" max="100" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[above_content_owner_weight]" class="regular-text" id="above_content_owner_weight" value="<?php echo esc_attr( genesis_get_option( 'above_content_owner_weight' ) ); ?>" /></p>
+					</td>
+				</tr>
+
+				<tr valign="top">
+					<th scope="row"><label for="below_content_owner_weight"><?php _e( 'Below Content Ad Weight', 'adsense_owner_author_split' ); ?></label></th>
+					<td>
+						<p><input type="number" min="1" max="100" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[below_content_owner_weight]" class="regular-text" id="below_content_owner_weight" value="<?php echo esc_attr( genesis_get_option( 'below_content_owner_weight' ) ); ?>" /></p>
+					</td>
+				</tr>
+
+				<tr valign="top">
+					<th scope="row"><label for="shortcode_owner_weight"><?php _e( 'Shortcode Ad Weight', 'adsense_owner_author_split' ); ?></label></th>
+					<td>
+						<p><input type="number" min="1" max="100" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[shortcode_owner_weight]" class="regular-text" id="shortcode_owner_weight" value="<?php echo esc_attr( genesis_get_option( 'shortcode_owner_weight' ) ); ?>" /></p>
+					</td>
+				</tr>
+
+				<tr valign="top">
+				<th scope="row"></th>
+				<td>
+					<p><span class="description"><?php echo __( 'These weights represent the percentage for which the Global Adsense ID will be used compared to the Author Adsense ID when on a post and the author has their ID set. For example, if each of these is set to 65, then the Global Adsense ID will be used for the ads 65% of the time and the Author ID will be used 35% of the time.', 'adsense_owner_author_split' ); ?></span></p>
+				</td>
+			</tr>
+
+
 			</tbody>
 		</table>
 
 	<?php
+		echo ob_get_clean();
 	}
 }
