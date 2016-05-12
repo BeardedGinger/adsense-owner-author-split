@@ -13,13 +13,28 @@ namespace GingerBeard\Adsense_Owner_Author_Split\Admin\Global_Settings;
 
 class Global_Settings {
 
+	protected static $instance;
+
+	/**
+	 * Used for getting an instance of this class
+	 *
+	 * @since 2.0.0
+	 */
+	public static function instance() {
+		if ( empty( self::$instance ) ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+	}
+
 	/**
 	 * Set default values for the New Genesis settings
 	 *
 	 * @since     1.0.0
 	 * @access    public
 	 */
-	public function defaults( $defaults ) {
+	public static function defaults( $defaults ) {
 
 		$defaults[ 'global_adsense_id' ] = '';
 		$defaults[ 'show_content_ads' ] = 1;
@@ -36,7 +51,7 @@ class Global_Settings {
 	 * @since     1.0.0
 	 * @access    public
 	 */
-	public function sanitize_content() {
+	public static function sanitize_content() {
 
 		// Sanitize the number/text fields
 		$new_fields = array(
@@ -62,12 +77,12 @@ class Global_Settings {
 	 * @since     1.0.0
 	 * @access    public
 	 */
-	public function metabox() {
+	public function metabox( $_genesis_theme_settings_pagehook ) {
 
 		add_meta_box(
 			'aoas_global_settings',
 			__( 'Adsense Owner/Author Split', 'adsense_owner_author_split' ),
-			$this->metabox_fields(),
+			array( $this, 'metabox_fields' ),
 			$_genesis_theme_settings_pagehook,
 			'main'
 		);
@@ -77,9 +92,9 @@ class Global_Settings {
 	 * Build the fields for the metabox
 	 *
 	 * @since     1.0.0
-	 * @access    private
+	 * @access    public
 	 */
-	private function metabox_fields() { ?>
+	public function metabox_fields() { ?>
 
 		<table class="form-table">
 			<tbody>

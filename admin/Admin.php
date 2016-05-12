@@ -21,6 +21,16 @@ class Admin {
 	 */
 	public function __construct() {
 
+		$this->load_admin_files();
+
+		// Add defaults for our new settings
+		add_filter( 'genesis_theme_settings_defaults', array( Global_Settings\Global_Settings::instance(), 'defaults' ) );
+
+		// Sanitize the new fields
+		add_action( 'genesis_settings_sanitizer_init', array( Global_Settings\Global_Settings::instance(), 'sanitize_content' ) );
+
+		// Add the metabox for the new settings
+		add_action( 'genesis_theme_settings_metaboxes', array( Global_Settings\Global_Settings::instance(), 'metabox' ) );
 	}
 
 	/**
@@ -31,7 +41,7 @@ class Admin {
 	 */
 	private function load_admin_files() {
 
-		require plugin_dir_path( __FILE__ ) . 'Global_Setting.php';
+		require plugin_dir_path( __FILE__ ) . 'Global_Settings.php';
 		require plugin_dir_path( __FILE__ ) . 'User_Profile_Setting.php';
 
 	}

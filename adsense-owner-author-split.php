@@ -28,3 +28,11 @@ function gingerbeard_adsense_owner_author_split() {
 }
 
 gingerbeard_adsense_owner_author_split();
+
+function gingerbeard_adsense_owner_author_split_admin() {
+	if( is_admin() ) {
+		new GingerBeard\Adsense_Owner_Author_Split\Admin\Admin();
+	}
+}
+
+gingerbeard_adsense_owner_author_split_admin();
