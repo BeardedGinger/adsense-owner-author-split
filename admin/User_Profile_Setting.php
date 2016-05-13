@@ -24,8 +24,18 @@ class Profile_Setting {
 
 		<table class="form-table">
 			<tr>
-				<th><label for="author_adsense_id"><?php echo __( 'Your Adsense ID', 'adsense_owner_author_split' ); ?></label>
-				<td><input type="text" name="author_adsense_id" value="<?php echo esc_attr(get_the_author_meta( 'author_adsense_id', $user->ID )); ?>" class="regular-text" /></td>
+				<th><label for="author_above_adsense_code"><?php echo __( 'Above Content Adsense Code', 'adsense_owner_author_split' ); ?></label>
+				<td><textarea name="author_above_adsense_code" cols="78" rows="8"><?php echo esc_attr(get_the_author_meta( 'author_above_adsense_code', $user->ID )); ?></textarea></td>
+			</tr>
+
+			<tr>
+				<th><label for="author_below_adsense_code"><?php echo __( 'Below Content Adsense Code', 'adsense_owner_author_split' ); ?></label>
+				<td><textarea name="author_below_adsense_code" cols="78" rows="8"><?php echo esc_attr(get_the_author_meta( 'author_below_adsense_code', $user->ID )); ?></textarea></td>
+			</tr>
+
+			<tr>
+				<th><label for="author_shortcode_adsense_code"><?php echo __( 'Shortcode Adsense Code', 'adsense_owner_author_split' ); ?></label>
+				<td><textarea name="author_shortcode_adsense_code" cols="78" rows="8"><?php echo esc_attr(get_the_author_meta( 'author_shortcode_adsense_code', $user->ID )); ?></textarea></td>
 			</tr>
 
 			<?php wp_nonce_field( 'aoas_user_save', 'aoas_user_save_nonce' ); ?>
@@ -46,6 +56,10 @@ class Profile_Setting {
 		if( ! current_user_can( 'edit_user', $user_id ) )
 			return;
 
+		// Can user save unfiltered html?
+		if( ! current_user_can( 'unfiltered_html' ) )
+			return;
+
 		// Is the nonce set?
 		if( ! isset( $_POST['aoas_user_save_nonce'] ) )
 			return;
@@ -54,9 +68,14 @@ class Profile_Setting {
 		if( ! wp_verify_nonce( $_POST['aoas_user_save_nonce'], 'aoas_user_save' ) )
 			return;
 
-		// Sanitize our field before we save it
-		$user_adsense_id = sanitize_text_field( $_POST['author_adsense_id'] );
+		// Get our content to be saved
+		$above = $_POST['author_above_adsense_code'];
+		$below = $_POST['author_below_adsense_code'];
+		$shortcode = $_POST['author_shortcode_adsense_code'];
 
-		update_user_meta( $user_id, 'author_adsense_id', $user_adsense_id );
+
+		update_user_meta( $user_id, 'author_above_adsense_code', $above );
+		update_user_meta( $user_id, 'author_below_adsense_code', $below );
+		update_user_meta( $user_id, 'author_shortcode_adsense_code', $shortcode );
 	}
 }
