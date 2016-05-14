@@ -11,8 +11,13 @@
 
 namespace GingerBeard\Adsense_Owner_Author_Split\Admin\Global_Settings;
 
-class Global_Settings {
+class Global_Settings extends \Genesis_Admin_Boxes {
 
+	/**
+	 * Instance of this class
+	 *
+	 * @since     1.0.0
+	 */
 	protected static $instance;
 
 	/**
@@ -29,20 +34,51 @@ class Global_Settings {
 	}
 
 	/**
-	 * Set default values for the New Genesis settings
+	 * Create menu and page for our Settings page
 	 *
 	 * @since     1.0.0
-	 * @access    public
 	 */
-	public static function defaults( $defaults ) {
+	public function __construct() {
 
-		$defaults[ 'global_adsense_id' ] = '';
-		$defaults[ 'show_content_ads' ] = 1;
-		$defaults[ 'above_content_owner_weight' ] = '';
-		$defaults[ 'below_content_owner_weight' ] = '';
-		$defaults[ 'shortcode_owner_weight' ] = '';
+		define( 'GINGERBEARD_ADSENSE_SPLIT', 'gingerbeard_adsense_settings_field' );
 
-		return $defaults;
+		$page_id = 'gingerbeard-adsense-split';
+
+		$menu_ops = array(
+			'submenu' => array(
+				'parent_slug'  => 'genesis',
+				'page_title'   => __( 'Adsense Owner/Author Split', 'adsense_owner_author_split' ),
+				'menu_title'   => __( 'Adsense Split', 'adsense_owner_author_split' )
+			)
+		);
+
+		$page_ops = array(
+			'save_button_text'  => __( 'Save Settings', 'adsense_owner_author_split' ),
+			'reset_button_text' => __( 'Reset Settings', 'adsense_owner_author_split' ),
+			'saved_notice_text' => __( 'Settings saved.', 'adsense_owner_author_split' ),
+			'reset_notice_text' => __( 'Settings reset.', 'adsense_owner_author_split' ),
+			'error_notice_text' => __( 'Error saving settings.', 'adsense_owner_author_split' ),
+		);
+
+		$settings_field = GINGERBEARD_ADSENSE_SPLIT;
+
+		$default_settings = apply_filters(
+			'gingerbeard_adsense_global_settings',
+			array(
+				'show_content_ads'                  => 1,
+				'owner_above_adsense_code'          => '',
+				'owner_above_weight'                => '10',
+				'owner_below_adsense_code'          => '',
+				'owner_below_weight'                => '10',
+				'owner_shortcode_adsense_code'      => '',
+				'owner_shortcode_weight'            => '10',
+			)
+		);
+
+		$this->create( $page_id, $menu_ops, $page_ops, $settings_field, $default_settings );
+
+		add_action( 'genesis_settings_sanitizer_init', array( $this, 'sanitizer_filters' ) );
+
 	}
 
 	/**
@@ -51,39 +87,46 @@ class Global_Settings {
 	 * @since     1.0.0
 	 * @access    public
 	 */
-	public static function sanitize_content() {
+	public function sanitizer_filters() {
 
-		// Sanitize the number/text fields
+		// Sanitize the adsense fields
 		$new_fields = array(
-			'global_adsense_id',
-			'above_content_owner_weight',
-			'below_content_owner_weight',
-			'shortcode_owner_weight'
+			'owner_above_adsense_code',
+			'owner_below_adsense_code',
+			'owner_shortcode_adsense_code'
 		);
 
-		genesis_add_option_filter( 'no_html', GENESIS_SETTINGS_FIELD, $new_fields );
+		genesis_add_option_filter( 'unfiltered_html', $this->settings_field, $new_fields );
+
+		// Sanitize the number fields
+		$numbers = array(
+			'owner_above_weight',
+			'owner_below_weight',
+			'owner_shortcode_weight'
+		);
+
+		genesis_add_option_filter( 'absint', $this->settings_field, $numbers );
 
 		// Sanitize the boolean
 		$true_false = array(
 			'show_content_ads'
 		);
 
-		genesis_add_option_filter( 'one_zero', GENESIS_SETTINGS_FIELD, $true_false );
+		genesis_add_option_filter( 'one_zero', $this->settings_field, $true_false );
 	}
 
 	/**
-	 * Register the metabox for our settings
-	 *
-	 * @since     1.0.0
-	 * @access    public
-	 */
-	public function metabox( $_genesis_theme_settings_pagehook ) {
+ 	 * Register meta boxes on the SEO Settings page.
+ 	 *
+ 	 * @since 1.0.0
+ 	 */
+	function metaboxes() {
 
 		add_meta_box(
 			'aoas_global_settings',
 			__( 'Adsense Owner/Author Split', 'adsense_owner_author_split' ),
 			array( $this, 'metabox_fields' ),
-			$_genesis_theme_settings_pagehook,
+			$this->pagehook,
 			'main'
 		);
 	}
@@ -100,30 +143,44 @@ class Global_Settings {
 			<tbody>
 
 				<tr valign="top">
-					<th scope="row"><label for="global_adsense_id"><?php _e( 'Global Adsense ID', 'adsense_owner_author_split' ); ?></label></th>
+					<th scope="row"><label for="owner_above_adsense_code"><?php _e( 'Above Content Adsense Code', 'adsense_owner_author_split' ); ?></label></th>
 					<td>
-						<p><input type="text" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[global_adsense_id]" class="regular-text" id="global_adsense_id" value="<?php echo esc_attr( genesis_get_option( 'global_adsense_id' ) ); ?>" /></p>
+						<p><textarea name="<?php echo $this->get_field_name( 'owner_above_adsense_code' ); ?>" class="regular-text" id="owner_above_adsense_code" cols="78" rows="8"><?php echo esc_attr( $this->get_field_value( 'owner_above_adsense_code' ) ); ?></textarea></p>
 					</td>
 				</tr>
 
 				<tr valign="top">
-					<th scope="row"><label for="above_content_owner_weight"><?php _e( 'Above Content Ad Weight', 'adsense_owner_author_split' ); ?></label></th>
+					<th scope="row"><label for="owner_above_weight"><?php _e( 'Above Content Ad<br>Owner&apos;s Weight', 'adsense_owner_author_split' ); ?></label></th>
 					<td>
-						<p><input type="number" min="1" max="100" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[above_content_owner_weight]" class="regular-text" id="above_content_owner_weight" value="<?php echo esc_attr( genesis_get_option( 'above_content_owner_weight' ) ); ?>" /></p>
+						<p><input type="range" min="0" max="10" step="1" name="<?php echo $this->get_field_name( 'owner_above_weight' ); ?>" class="regular-text" id="owner_above_weight" value="<?php echo esc_attr( $this->get_field_value( 'owner_above_weight' ) ); ?>" /></p>
 					</td>
 				</tr>
 
 				<tr valign="top">
-					<th scope="row"><label for="below_content_owner_weight"><?php _e( 'Below Content Ad Weight', 'adsense_owner_author_split' ); ?></label></th>
+					<th scope="row"><label for="owner_below_adsense_code"><?php _e( 'Below Content Adsense Code', 'adsense_owner_author_split' ); ?></label></th>
 					<td>
-						<p><input type="number" min="1" max="100" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[below_content_owner_weight]" class="regular-text" id="below_content_owner_weight" value="<?php echo esc_attr( genesis_get_option( 'below_content_owner_weight' ) ); ?>" /></p>
+						<p><textarea name="<?php echo $this->get_field_name( 'owner_below_adsense_code' ); ?>" class="regular-text" id="owner_above_adsense_code" cols="78" rows="8"><?php echo esc_attr( $this->get_field_value( 'owner_below_adsense_code' ) ); ?></textarea></p>
 					</td>
 				</tr>
 
 				<tr valign="top">
-					<th scope="row"><label for="shortcode_owner_weight"><?php _e( 'Shortcode Ad Weight', 'adsense_owner_author_split' ); ?></label></th>
+					<th scope="row"><label for="owner_below_weight"><?php _e( 'Below Content Ad<br>Owner&apos;s Weight', 'adsense_owner_author_split' ); ?></label></th>
 					<td>
-						<p><input type="number" min="1" max="100" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[shortcode_owner_weight]" class="regular-text" id="shortcode_owner_weight" value="<?php echo esc_attr( genesis_get_option( 'shortcode_owner_weight' ) ); ?>" /></p>
+						<p><input type="range" min="0" max="10" step="1" name="<?php echo $this->get_field_name( 'owner_below_weight' ); ?>" class="regular-text" id="owner_below_weight" value="<?php echo esc_attr( $this->get_field_value( 'owner_below_weight' ) ); ?>" /></p>
+					</td>
+				</tr>
+
+				<tr valign="top">
+					<th scope="row"><label for="owner_shortcode_adsense_code"><?php _e( 'Shortcode Adsense Code', 'adsense_owner_author_split' ); ?></label></th>
+					<td>
+						<p><textarea name="<?php echo $this->get_field_name( 'owner_shortcode_adsense_code' ); ?>" class="regular-text" id="owner_shortcode_adsense_code" cols="78" rows="8"><?php echo esc_attr( $this->get_field_value( 'owner_shortcode_adsense_code' ) ); ?></textarea></p>
+					</td>
+				</tr>
+
+				<tr valign="top">
+					<th scope="row"><label for="owner_shortcode_weight"><?php _e( 'Shortcode Ad<br>Owner&apos;s Weight', 'adsense_owner_author_split' ); ?></label></th>
+					<td>
+						<p><input type="range" min="0" max="10" step="1" name="<?php echo $this->get_field_name( 'owner_shortcode_weight' ); ?>" class="regular-text" id="owner_shortcode_weight" value="<?php echo esc_attr( $this->get_field_value( 'owner_shortcode_weight' ) ); ?>" /></p>
 					</td>
 				</tr>
 
@@ -140,4 +197,5 @@ class Global_Settings {
 
 	<?php
 	}
+
 }

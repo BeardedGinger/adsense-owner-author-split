@@ -21,16 +21,10 @@ class Admin {
 	 */
 	public function __construct() {
 
-		$this->load_admin_files();
+		// Add the admin page
+		add_action( 'after_setup_theme', array( $this, 'load_admin_files' ) );
+		add_action( 'after_setup_theme', array( $this, 'get_global_settings' ) );
 
-		// Add defaults for our new settings
-		add_filter( 'genesis_theme_settings_defaults', array( Global_Settings\Global_Settings::instance(), 'defaults' ) );
-
-		// Sanitize the new fields
-		add_action( 'genesis_settings_sanitizer_init', array( Global_Settings\Global_Settings::instance(), 'sanitize_content' ) );
-
-		// Add the metabox for the new settings
-		add_action( 'genesis_theme_settings_metaboxes', array( Global_Settings\Global_Settings::instance(), 'metabox' ) );
 
 		// Add the user profile fields
 		add_action( 'show_user_profile', array( 'GingerBeard\Adsense_Owner_Author_Split\Admin\User_Profile_Setting\Profile_Setting', 'user_meta' ) );
@@ -47,11 +41,23 @@ class Admin {
 	 * @since     1.0.0
 	 * @access    private
 	 */
-	private function load_admin_files() {
+	public function load_admin_files() {
 
 		require plugin_dir_path( __FILE__ ) . 'Global_Settings.php';
 		require plugin_dir_path( __FILE__ ) . 'User_Profile_Setting.php';
 
+	}
+
+	/**
+	 * Get the instance of the Global Settings class
+	 *
+	 * @since     1.0.0
+	 */
+	public function get_global_settings () {
+
+		$global_settings = Global_Settings\Global_Settings::instance();
+
+		return $global_settings;
 	}
 
 }
