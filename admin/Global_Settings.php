@@ -52,13 +52,7 @@ class Global_Settings extends \Genesis_Admin_Boxes {
 			)
 		);
 
-		$page_ops = array(
-			'save_button_text'  => __( 'Save Settings', 'adsense_owner_author_split' ),
-			'reset_button_text' => __( 'Reset Settings', 'adsense_owner_author_split' ),
-			'saved_notice_text' => __( 'Settings saved.', 'adsense_owner_author_split' ),
-			'reset_notice_text' => __( 'Settings reset.', 'adsense_owner_author_split' ),
-			'error_notice_text' => __( 'Error saving settings.', 'adsense_owner_author_split' ),
-		);
+		$page_ops = array();
 
 		$settings_field = GINGERBEARD_ADSENSE_SPLIT;
 
@@ -124,7 +118,7 @@ class Global_Settings extends \Genesis_Admin_Boxes {
 
 		add_meta_box(
 			'aoas_global_settings',
-			__( 'Adsense Owner/Author Split', 'adsense_owner_author_split' ),
+			__( 'Content Ads and Weights', 'adsense_owner_author_split' ),
 			array( $this, 'metabox_fields' ),
 			$this->pagehook,
 			'main'

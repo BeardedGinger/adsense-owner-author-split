@@ -25,14 +25,13 @@ class Admin {
 		add_action( 'after_setup_theme', array( $this, 'load_admin_files' ) );
 		add_action( 'after_setup_theme', array( $this, 'get_global_settings' ) );
 
-
 		// Add the user profile fields
-		add_action( 'show_user_profile', array( 'GingerBeard\Adsense_Owner_Author_Split\Admin\User_Profile_Setting\Profile_Setting', 'user_meta' ) );
-		add_action( 'edit_user_profile', array( 'GingerBeard\Adsense_Owner_Author_Split\Admin\User_Profile_Setting\Profile_Setting', 'user_meta' ) );
+		add_action( 'show_user_profile', array( User_Profile_Setting\Profile_Setting::instance(), 'user_meta' ) );
+		add_action( 'edit_user_profile', array( User_Profile_Setting\Profile_Setting::instance(), 'user_meta' ) );
 
 		// Save user profile
-		add_action( 'personal_options_update', array( 'GingerBeard\Adsense_Owner_Author_Split\Admin\User_Profile_Setting\Profile_Setting', 'save_meta' ) );
-		add_action( 'edit_user_profile_update', array( 'GingerBeard\Adsense_Owner_Author_Split\Admin\User_Profile_Setting\Profile_Setting', 'save_meta' ) );
+		add_action( 'personal_options_update', array( User_Profile_Setting\Profile_Setting::instance(), 'save_meta' ) );
+		add_action( 'edit_user_profile_update', array( User_Profile_Setting\Profile_Setting::instance(), 'save_meta' ) );
 	}
 
 	/**

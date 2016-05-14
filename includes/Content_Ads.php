@@ -32,34 +32,71 @@ class Ads {
 	private $global_adsense_id;
 
 	/**
-	 * Set the Adsense ID variables
+	 * Owner Above Ad
 	 *
 	 * @since     1.0.0
+	 * @access    public
+	 * @var       string
+	 */
+	public $owner_above_ad;
+
+	/**
+	 * Owner Below Ad
+	 *
+	 * @since     1.0.0
+	 * @access    public
+	 * @var       string
+	 */
+	public $owner_below_ad;
+
+	/**
+	 * Author Above Ad
+	 *
+	 * @since     1.0.0
+	 * @access    public
+	 * @var       string
+	 */
+	public $author_above_ad;
+
+	/**
+	 * Author Below Ad
+	 *
+	 * @since     1.0.0
+	 * @access    public
+	 * @var       string
+	 */
+	public $author_below_ad;
+
+	/**
+	 * Instance of this class
+	 *
+	 * @since     1.0.0
+	 */
+	protected static $instance;
+
+	/**
+	 * Used for getting an instance of this class
+	 *
+	 * @since 1.0.0
+	 */
+	public static function instance() {
+		if ( empty( self::$instance ) ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+	}
+
+	/**
+	 * Set the ad variables
+	 *
+	 * @since     1.0.0
+	 * @access    public
 	 */
 	public function __construct() {
 
-		$this->set_global_adsense_id();
-		$this->set_author_adsense_id();
-	}
-
-	/**
-	 * Ad displayed above post content
-	 *
-	 * @since     1.0.0
-	 * @access    public
-	 */
-	public static function above_content_ad() {
-		echo 'above content ad';
-	}
-
-	/**
-	 * Ad displayed below post content
-	 *
-	 * @since     1.0.0
-	 * @access    public
-	 */
-	public static function below_content_ad() {
-		echo 'below content ad';
+		$this->owner_adsense_codes();
+		$this->author_adsense_codes();
 	}
 
 	/**
@@ -69,11 +106,9 @@ class Ads {
 	 * @access    private
 	 * @param     string     $global_adsense_id
 	 */
-	private function set_global_adsense_id() {
+	private function owner_adsense_codes() {
 
-		$global_id = get_site_option( 'aoas_global_adsense_id' );
 
-		$this->global_adsense_id = $global_id;
 	}
 
 	/**
@@ -83,17 +118,8 @@ class Ads {
 	 * @access    private
 	 * @param     string     $author_adsense_id
 	 */
-	private function set_author_adsense_id() {
+	private function author_adsense_codes() {
 
-		global $post;
 
-		$author_id = $post->post_author;
-		$adsense_id = get_user_meta( $author_id, 'aoas_author_adsense_id', true );
-
-		if( $adsense_id ) {
-			$this->author_adsense_id = $adsense_id;
-		} else {
-			$this->author_adsense_id = $this->global_adsense_id;
-		}
 	}
 }

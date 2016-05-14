@@ -40,9 +40,6 @@ class Adsense_Owner_Author_Split {
 
 		$this->get_frontend_files();
 
-		// Hook up before & after content ads
-		add_action( 'genesis_entry_content', array( 'GingerBeard\Adsense_Owner_Author_Split\Content_Ads\Ads', 'above_content_ad' ), 0 );
-		add_action( 'genesis_entry_content', array( 'GingerBeard\Adsense_Owner_Author_Split\Content_Ads\Ads', 'below_content_ad' ), 100 );
 
 	}
 

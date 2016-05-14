@@ -13,6 +13,26 @@ namespace GingerBeard\Adsense_Owner_Author_Split\Admin\User_Profile_Setting;
 class Profile_Setting {
 
 	/**
+	 * Instance of this class
+	 *
+	 * @since     1.0.0
+	 */
+	protected static $instance;
+
+	/**
+	 * Used for getting an instance of this class
+	 *
+	 * @since 1.0.0
+	 */
+	public static function instance() {
+		if ( empty( self::$instance ) ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+	}
+
+	/**
 	 * The adsense ID field
 	 *
 	 * @since     1.0.0
