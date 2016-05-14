@@ -137,6 +137,16 @@ class Global_Settings extends \Genesis_Admin_Boxes {
 			<tbody>
 
 				<tr valign="top">
+					<th scope="row"><?php _e( 'Show Content Ads', 'adsense_owner_author_split' ); ?></th>
+					<td>
+						<p>
+							<label for="<?php $this->field_id( 'show_content_ads' ); ?>"><input type="checkbox" name="<?php $this->field_name( 'show_content_ads' ); ?>" id="<?php $this->field_id( 'show_content_ads' ); ?>" value="1" <?php checked( $this->get_field_value( 'show_content_ads' ) ); ?> />
+							<?php _e( 'You can control ad display on a per post basis. This option determines whether the ads are automatically on or off for all posts', 'adsense_owner_author_split' ); ?></label>
+						</p>
+					</td>
+				</tr>
+
+				<tr valign="top">
 					<th scope="row"><label for="owner_above_adsense_code"><?php _e( 'Above Content Adsense Code', 'adsense_owner_author_split' ); ?></label></th>
 					<td>
 						<p><textarea name="<?php echo $this->get_field_name( 'owner_above_adsense_code' ); ?>" class="regular-text" id="owner_above_adsense_code" cols="78" rows="8"><?php echo esc_attr( $this->get_field_value( 'owner_above_adsense_code' ) ); ?></textarea></p>

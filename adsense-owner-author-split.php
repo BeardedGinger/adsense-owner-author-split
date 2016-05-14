@@ -8,7 +8,7 @@
  * Description:     Allows for site owners and bloggers to split Adsense IDs used when displaying ads in blog posts
  * Version:         1.0.0
  * Author:          Josh Mallard
- * Author URI:      http://joshmallard.com
+ * Author URI:      http://gingercult.com
  * License:         GPL-2.0+
  * License URI:     http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:     adsense_owner_author_split

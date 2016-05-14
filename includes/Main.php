@@ -40,7 +40,6 @@ class Adsense_Owner_Author_Split {
 
 		$this->get_frontend_files();
 
-
 	}
 
 	/**
