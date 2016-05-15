@@ -14,24 +14,6 @@ namespace GingerBeard\Adsense_Owner_Author_Split\Content_Ads;
 class Ads {
 
 	/**
-	 * Author Adsense ID
-	 *
-	 * @since     1.0.0
-	 * @access    private
-	 * @var       string     $author_adsense_id     Author Adsense ID.
-	 */
-	private $author_adsense_id;
-
-	/**
-	 * Global Adsense ID
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @var      string      $global_adsense_id     Global Adsense ID.
-	 */
-	private $global_adsense_id;
-
-	/**
 	 * Owner Above Ad
 	 *
 	 * @since     1.0.0

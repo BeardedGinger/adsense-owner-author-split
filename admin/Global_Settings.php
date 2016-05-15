@@ -137,11 +137,11 @@ class Global_Settings extends \Genesis_Admin_Boxes {
 			<tbody>
 
 				<tr valign="top">
-					<th scope="row"><?php _e( 'Show Content Ads', 'adsense_owner_author_split' ); ?></th>
+					<th scope="row"><?php _e( 'Hide Content Ads', 'adsense_owner_author_split' ); ?></th>
 					<td>
 						<p>
-							<label for="<?php $this->field_id( 'show_content_ads' ); ?>"><input type="checkbox" name="<?php $this->field_name( 'show_content_ads' ); ?>" id="<?php $this->field_id( 'show_content_ads' ); ?>" value="1" <?php checked( $this->get_field_value( 'show_content_ads' ) ); ?> />
-							<?php _e( 'You can control ad display on a per post basis. This option determines whether the ads are automatically on or off for all posts', 'adsense_owner_author_split' ); ?></label>
+							<label for="<?php $this->field_id( 'hide_content_ads' ); ?>"><input type="checkbox" name="<?php $this->field_name( 'hide_content_ads' ); ?>" id="<?php $this->field_id( 'hide_content_ads' ); ?>" value="1" <?php checked( $this->get_field_value( 'hide_content_ads' ) ); ?> />
+							<p><span class="description"><?php _e( 'By default, the ads will show on all posts and you can select to hide them on each individual post. Alternatively, selecting this option will hide the ads globally, allowing you to show them on individual posts', 'adsense_owner_author_split' ); ?></span></p></label>
 						</p>
 					</td>
 				</tr>
