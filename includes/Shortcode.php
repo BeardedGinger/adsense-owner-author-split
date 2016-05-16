@@ -69,7 +69,6 @@ class Shortcode {
 
 		$this->owner_weight();
 		$this->owner_adsense_codes();
-		$this->author_adsense_codes();
 	}
 
 	/**
@@ -82,15 +81,26 @@ class Shortcode {
 
 		ob_start();
 
-		// Enqueue the shortcode ad js only when shortcode is used
-		wp_enqueue_script( 'gb-adsense-shortcode-split', plugin_dir_url( __FILE__ ) . '../resources/js/gb-adsense-shortcode-split.js', array(), $this->version, false );
+		global $post;
+
+		if( empty( $post ) )
+			return;
+
+		$author = $post->post_author;
+		$author_shortcode = get_user_meta( $author, 'author_shortcode_adsense_code', true );
+
+		if( isset( $author_shortcode ) ) {
+			$this->author_shortcode_ad = $author_shortcode;
+		}
 
 		// Localize the script with all of our ads and weights
 		wp_localize_script( 'gb-adsense-shortcode-split', 'GINGERBEARD_SHORTCODE_ADS', array(
-			'owner_shortcode_ad'      => $this->owner_adsense_codes(),
-			'owner_shortcode_weight'  => $this->owner_weight(),
-			'author_shortcode_ad'     => $this->sauthor_adsense_codes()
+			'owner_shortcode_ad'      => $this->owner_shortcode_ad,
+			'owner_shortcode_weight'  => $this->owner_shortcode_weight,
+			'author_shortcode_ad'     => $this->author_shortcode_ad
 		) );
+
+		wp_print_scripts( 'gb-adsense-shortcode-split' );
 
 		echo '<script>document.write(shortcodeAdsSplit[Math.floor(Math.random()*10)]);</script>';
 
@@ -109,7 +119,7 @@ class Shortcode {
 
 		$owner_weight = genesis_get_option( 'owner_shortcode_weight', 'gingerbeard_adsense_settings_field' );
 
-		if( isset( $owner_shortcode ) ) {
+		if( isset( $owner_weight ) ) {
 			$this->owner_shortcode_weight = $owner_weight;
 		}
 
@@ -129,23 +139,5 @@ class Shortcode {
 			$this->owner_shortcode_ad = $owner_shortcode;
 		}
 
-	}
-
-	/**
-	 * Set the author shortcode ad
-	 *
-	 * @since     1.0.0
-	 * @access    private
-	 */
-	private function author_adsense_codes() {
-
-		global $post;
-
-		$author = $post->post_author;
-		$author_shortcode = get_user_meta( $author, 'author_shortcode_adsense_code', true );
-
-		if( isset( $author_shortcode ) ) {
-			$this->author_shortcode_ad = $author_shortcode;
-		}
 	}
 }

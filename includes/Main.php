@@ -38,27 +38,12 @@ class Adsense_Owner_Author_Split {
 	 */
 	public function __construct() {
 
-		// Get the shortcode file
-		require plugin_dir_path( __FILE__ ) . 'Shortcode.php';
+		// shortcode
+		add_action( 'after_setup_theme', array( $this, 'ad_shortcode' ) );
 
 		// place the content ads
 		add_action( 'after_setup_theme', array( $this, 'place_content_ads' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'scripts' ) );
-
-		// make us a shortcode
-		add_shortcode( 'gb_ad', array( Shortcode\Shortcode::instance(), 'build_shortcode' ) );
-
-	}
-
-	/**
-	 * Get the necessary files to work with here
-	 *
-	 * @since     1.0.0
-	 * @access    private
-	 */
-	private function get_frontend_files() {
-
-		require plugin_dir_path( __FILE__ ) . 'Content_Ads.php';
 
 	}
 
@@ -70,10 +55,24 @@ class Adsense_Owner_Author_Split {
 	 */
 	public function place_content_ads() {
 
-		$this->get_frontend_files();
+		require plugin_dir_path( __FILE__ ) . 'Content_Ads.php';
 
 		add_action( 'genesis_entry_content', array( $this, 'before_content_ad' ), 0 );
 		add_action( 'genesis_entry_content', array( $this, 'below_content_ad' ), 10 );
+
+	}
+
+	/**
+	 * Add the shortcode
+	 *
+	 * @since     1.0.0
+	 * @access    public
+	 */
+	public function ad_shortcode() {
+
+		require plugin_dir_path( __FILE__ ) . 'Shortcode.php';
+
+		add_shortcode( 'gb_ad', array( Shortcode\Shortcode::instance(), 'build_shortcode' ) );
 
 	}
 
@@ -85,15 +84,15 @@ class Adsense_Owner_Author_Split {
 	 */
 	public function scripts() {
 
+		// register the shortcode ad js only when shortcode is used
+		wp_register_script( 'gb-adsense-shortcode-split', plugin_dir_url( __FILE__ ) . '../resources/js/gb-adsense-shortcode-split.js', array(), $this->version, false );
+
 		// If we're not running genesis, don't do anything
 		if( ! function_exists( 'genesis' ) )
 			return;
 
 		$hide_global = genesis_get_option( 'hide_content_ads', 'gingerbeard_adsense_settings_field' );
 		$hide_post = get_post_meta( get_the_ID(), 'gb_adsense_hide_content_ads', true );
-
-		$hide_selected = false;
-		$show_selected = false;
 
 		// If global default hide & Add screen
 		if( $hide_global == 1 && $hide_post != 'show-ads' || $hide_post == 'hide-ads' )
@@ -127,9 +126,6 @@ class Adsense_Owner_Author_Split {
 		$hide_global = genesis_get_option( 'hide_content_ads', 'gingerbeard_adsense_settings_field' );
 		$hide_post = get_post_meta( get_the_ID(), 'gb_adsense_hide_content_ads', true );
 
-		$hide_selected = false;
-		$show_selected = false;
-
 		// If global default hide & Add screen
 		if( $hide_global == 1 && $hide_post != 'show-ads' || $hide_post == 'hide-ads' )
 			return;
@@ -151,9 +147,6 @@ class Adsense_Owner_Author_Split {
 
 		$hide_global = genesis_get_option( 'hide_content_ads', 'gingerbeard_adsense_settings_field' );
 		$hide_post = get_post_meta( get_the_ID(), 'gb_adsense_hide_content_ads', true );
-
-		$hide_selected = false;
-		$show_selected = false;
 
 		// If global default hide & Add screen
 		if( $hide_global == 1 && $hide_post != 'show-ads' || $hide_post == 'hide-ads' )
