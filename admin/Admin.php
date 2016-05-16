@@ -22,7 +22,7 @@ class Admin {
 	public function __construct() {
 
 		// Add the admin page
-		add_action( 'after_setup_theme', array( $this, 'load_admin_files' ) );
+		add_action( 'after_setup_theme', array( $this, 'load_after_theme' ) );
 		add_action( 'after_setup_theme', array( $this, 'get_global_settings' ) );
 
 		// Add the user profile fields
@@ -43,12 +43,13 @@ class Admin {
 	}
 
 	/**
-	 * Get all the admin files
+	 * Get the admin files that must be called after theme is setup
+	 * Associated class is extension of class created in Genesis
 	 *
 	 * @since     1.0.0
 	 * @access    private
 	 */
-	public function load_admin_files() {
+	public function load_after_theme() {
 
 		require plugin_dir_path( __FILE__ ) . 'Global_Settings.php';
 

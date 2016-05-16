@@ -82,14 +82,40 @@ class Ads {
 	}
 
 	/**
+	 * Set the owner weight for displaying ads
+	 *
+	 * @since     1.0.0
+	 * @access    public
+	 */
+	public function owner_weights() {
+
+		$above_weight = genesis_get_option( 'owner_above_adsense_code', 'gingerbeard_adsense_settings_field' );
+		$below_weight = genesis_get_option( 'owner_below_adsense_code', 'gingerbeard_adsense_settings_field' );
+	}
+
+	/**
 	 * Set the global Adsense ID
 	 *
 	 * @since     1.0.0
 	 * @access    private
-	 * @param     string     $global_adsense_id
 	 */
 	private function owner_adsense_codes() {
 
+		$owner_above = genesis_get_option( 'owner_above_adsense_code', 'gingerbeard_adsense_settings_field' );
+		$owner_below = genesis_get_option( 'owner_below_adsense_code', 'gingerbeard_adsense_settings_field' );
+		$owner_shortcode = genesis_get_option( 'owner_shortcode_adsense_code', 'gingerbeard_adsense_settings_field' );
+
+		if( isset( $owner_above ) ) {
+			$this->owner_above_ad = $owner_above;
+		}
+
+		if( isset( $owner_below ) ) {
+			$this->owner_below_ad = $owner_below;
+		}
+
+		if( isset( $owner_shortcode ) ) {
+			$this->owner_shortcode_ad = $owner_shortcode;
+		}
 
 	}
 
@@ -101,7 +127,6 @@ class Ads {
 	 * @param     string     $author_adsense_id
 	 */
 	private function author_adsense_codes() {
-
 
 	}
 }
