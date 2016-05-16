@@ -100,10 +100,12 @@ class Adsense_Owner_Author_Split {
 
 		// Localize the script with all of our ads and weights
 		wp_localize_script( 'gb-adsense-split', 'GINGERBEARD_CONTENT_ADS', array(
-			'owner_above'   => Content_Ads\Ads::instance()->owner_above_ad,
-			'owner_below'   => Content_Ads\Ads::instance()->owner_below_ad,
-			'author_above'  => Content_Ads\Ads::instance()->author_above_ad,
-			'author_below'  => Content_Ads\Ads::instance()->author_below_ad
+			'owner_above_ad'      => Content_Ads\Ads::instance()->owner_above_ad,
+			'owner_above_weight'  => Content_Ads\Ads::instance()->owner_above_weight,
+			'owner_below_ad'      => Content_Ads\Ads::instance()->owner_below_ad,
+			'owner_below_weight'  => Content_Ads\Ads::instance()->owner_below_weight,
+			'author_above_ad'     => Content_Ads\Ads::instance()->author_above_ad,
+			'author_below_ad'     => Content_Ads\Ads::instance()->author_below_ad
 		) );
 	}
 
@@ -154,7 +156,7 @@ class Adsense_Owner_Author_Split {
 		if( $hide_global == 1 && $hide_post != 'show-ads' || $hide_post == 'hide-ads' )
 			return;
 
-		echo 'below content ad';
+		echo '';
 	}
 
  }

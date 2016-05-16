@@ -50,6 +50,24 @@ class Ads {
 	public $author_below_ad;
 
 	/**
+	 * Owner Above Ad weight
+	 *
+	 * @since     1.0.0
+	 * @access    public
+	 * @var       string
+	 */
+	public $owner_above_weight;
+
+	/**
+	 * Owner Below weight
+	 *
+	 * @since     1.0.0
+	 * @access    public
+	 * @var       string
+	 */
+	public $owner_below_weight;
+
+	/**
 	 * Instance of this class
 	 *
 	 * @since     1.0.0
@@ -89,8 +107,18 @@ class Ads {
 	 */
 	public function owner_weights() {
 
-		$above_weight = genesis_get_option( 'owner_above_adsense_code', 'gingerbeard_adsense_settings_field' );
-		$below_weight = genesis_get_option( 'owner_below_adsense_code', 'gingerbeard_adsense_settings_field' );
+		$above_weight = genesis_get_option( 'owner_above_weight', 'gingerbeard_adsense_settings_field' );
+		$below_weight = genesis_get_option( 'owner_below_weight', 'gingerbeard_adsense_settings_field' );
+
+		if( isset( $above_weight ) ) {
+			$this->owner_above_weight = $above_weight;
+		}
+
+		if( isset( $below_weight ) ) {
+			$this->owner_below_weight = $below_weight;
+		}
+
+
 	}
 
 	/**
@@ -128,5 +156,24 @@ class Ads {
 	 */
 	private function author_adsense_codes() {
 
+		global $post;
+
+		$author = $post->post_author;
+
+		$author_above = get_user_meta( $author, 'author_above_adsense_code', true );
+		$author_below = get_user_meta( $author, 'author_below_adsense_code', true );
+		$author_shortcode = get_user_meta( $author, 'author_shortcode_adsense_code', true );
+
+		if( isset( $author_above ) ) {
+			$this->author_above_ad = $author_above;
+		}
+
+		if( isset( $author_below ) ) {
+			$this->author_below_ad = $author_below;
+		}
+
+		if( isset( $author_shortcode ) ) {
+			$this->author_shortcode_ad = $author_shortcode;
+		}
 	}
 }
