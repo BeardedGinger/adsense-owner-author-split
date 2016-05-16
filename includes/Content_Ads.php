@@ -123,7 +123,7 @@ class Ads {
 	}
 
 	/**
-	 * Set the global Adsense ID
+	 * Set the owner content ads
 	 *
 	 * @since     1.0.0
 	 * @access    private
@@ -132,7 +132,6 @@ class Ads {
 
 		$owner_above = genesis_get_option( 'owner_above_adsense_code', 'gingerbeard_adsense_settings_field' );
 		$owner_below = genesis_get_option( 'owner_below_adsense_code', 'gingerbeard_adsense_settings_field' );
-		$owner_shortcode = genesis_get_option( 'owner_shortcode_adsense_code', 'gingerbeard_adsense_settings_field' );
 
 		if( isset( $owner_above ) ) {
 			$this->owner_above_ad = $owner_above;
@@ -142,18 +141,13 @@ class Ads {
 			$this->owner_below_ad = $owner_below;
 		}
 
-		if( isset( $owner_shortcode ) ) {
-			$this->owner_shortcode_ad = $owner_shortcode;
-		}
-
 	}
 
 	/**
-	 * Set the author Adsense ID
+	 * Set the author content ads
 	 *
 	 * @since     1.0.0
 	 * @access    private
-	 * @param     string     $author_adsense_id
 	 */
 	private function author_adsense_codes() {
 
@@ -163,7 +157,6 @@ class Ads {
 
 		$author_above = get_user_meta( $author, 'author_above_adsense_code', true );
 		$author_below = get_user_meta( $author, 'author_below_adsense_code', true );
-		$author_shortcode = get_user_meta( $author, 'author_shortcode_adsense_code', true );
 
 		if( isset( $author_above ) ) {
 			$this->author_above_ad = $author_above;
@@ -171,10 +164,6 @@ class Ads {
 
 		if( isset( $author_below ) ) {
 			$this->author_below_ad = $author_below;
-		}
-
-		if( isset( $author_shortcode ) ) {
-			$this->author_shortcode_ad = $author_shortcode;
 		}
 	}
 }

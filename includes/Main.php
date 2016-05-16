@@ -45,6 +45,9 @@ class Adsense_Owner_Author_Split {
 		add_action( 'after_setup_theme', array( $this, 'place_content_ads' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'scripts' ) );
 
+		// make us a shortcode
+		add_shortcode( 'gb_ad', array( Shortcode\Shortcode::instance(), 'build_shortcode' ) );
+
 	}
 
 	/**
