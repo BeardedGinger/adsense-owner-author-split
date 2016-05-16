@@ -97,6 +97,7 @@ class Ads {
 
 		$this->owner_adsense_codes();
 		$this->author_adsense_codes();
+		$this->owner_weights();
 	}
 
 	/**

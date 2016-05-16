@@ -131,7 +131,7 @@ class Adsense_Owner_Author_Split {
 		if( $hide_global == 1 && $hide_post != 'show-ads' || $hide_post == 'hide-ads' )
 			return;
 
-		echo '';
+		echo '<script>document.write(aboveAdsSplit[Math.floor(Math.random()*10)]);</script>';
 	}
 
 	/**
@@ -156,7 +156,7 @@ class Adsense_Owner_Author_Split {
 		if( $hide_global == 1 && $hide_post != 'show-ads' || $hide_post == 'hide-ads' )
 			return;
 
-		echo '';
+		echo '<script>document.write(belowAdsSplit[Math.floor(Math.random()*10)]);</script>';
 	}
 
  }
