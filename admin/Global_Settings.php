@@ -135,7 +135,11 @@ class Global_Settings extends \Genesis_Admin_Boxes {
 
 		<table class="form-table">
 			<tbody>
-
+				<script>
+					function outputUpdate(input, weight) {
+						document.querySelector(input).value = weight;
+					}
+				</script>
 				<tr valign="top">
 					<th scope="row"><?php _e( 'Hide Content Ads', 'adsense_owner_author_split' ); ?></th>
 					<td>
@@ -156,7 +160,8 @@ class Global_Settings extends \Genesis_Admin_Boxes {
 				<tr valign="top">
 					<th scope="row"><label for="owner_above_weight"><?php _e( 'Above Content Ad<br>Owner&apos;s Weight', 'adsense_owner_author_split' ); ?></label></th>
 					<td>
-						<p><input type="range" min="0" max="10" step="1" name="<?php echo $this->get_field_name( 'owner_above_weight' ); ?>" class="regular-text" id="owner_above_weight" value="<?php echo esc_attr( $this->get_field_value( 'owner_above_weight' ) ); ?>" /></p>
+						<p><input type="range" min="0" max="10" step="1" name="<?php echo $this->get_field_name( 'owner_above_weight' ); ?>" class="regular-text" id="owner_above_weight" value="<?php echo esc_attr( $this->get_field_value( 'owner_above_weight' ) ); ?>" oninput="outputUpdate('#owner_above_weight_output', value)" /></p>
+						<p class="description">Show the Owner's ad above the content for every <strong><output for="owner_above_weight" id="owner_above_weight_output"><?php echo esc_attr( $this->get_field_value( 'owner_above_weight' ) ); ?></output></strong> out of 10 page loads</p>
 					</td>
 				</tr>
 
@@ -170,7 +175,8 @@ class Global_Settings extends \Genesis_Admin_Boxes {
 				<tr valign="top">
 					<th scope="row"><label for="owner_below_weight"><?php _e( 'Below Content Ad<br>Owner&apos;s Weight', 'adsense_owner_author_split' ); ?></label></th>
 					<td>
-						<p><input type="range" min="0" max="10" step="1" name="<?php echo $this->get_field_name( 'owner_below_weight' ); ?>" class="regular-text" id="owner_below_weight" value="<?php echo esc_attr( $this->get_field_value( 'owner_below_weight' ) ); ?>" /></p>
+						<p><input type="range" min="0" max="10" step="1" name="<?php echo $this->get_field_name( 'owner_below_weight' ); ?>" class="regular-text" id="owner_below_weight" value="<?php echo esc_attr( $this->get_field_value( 'owner_below_weight' ) ); ?>" oninput="outputUpdate('#owner_below_weight_output', value)" /></p>
+						<p class="description">Show the Owner's ad below the content for every <strong><output for="owner_below_weight" id="owner_below_weight_output"><?php echo esc_attr( $this->get_field_value( 'owner_below_weight' ) ); ?></output></strong> out of 10 page loads</p>
 					</td>
 				</tr>
 
@@ -184,17 +190,10 @@ class Global_Settings extends \Genesis_Admin_Boxes {
 				<tr valign="top">
 					<th scope="row"><label for="owner_shortcode_weight"><?php _e( 'Shortcode Ad<br>Owner&apos;s Weight', 'adsense_owner_author_split' ); ?></label></th>
 					<td>
-						<p><input type="range" min="0" max="10" step="1" name="<?php echo $this->get_field_name( 'owner_shortcode_weight' ); ?>" class="regular-text" id="owner_shortcode_weight" value="<?php echo esc_attr( $this->get_field_value( 'owner_shortcode_weight' ) ); ?>" /></p>
+						<p><input type="range" min="0" max="10" step="1" name="<?php echo $this->get_field_name( 'owner_shortcode_weight' ); ?>" class="regular-text" id="owner_shortcode_weight" value="<?php echo esc_attr( $this->get_field_value( 'owner_shortcode_weight' ) ); ?>" oninput="outputUpdate('#owner_shortcode_weight_output', value)" /></p>
+						<p class="description">Show the Owner's ad in the shortcode for every <strong><output for="owner_shortcode_weight" id="owner_shortcode_weight_output"><?php echo esc_attr( $this->get_field_value( 'owner_shortcode_weight' ) ); ?></output></strong> out of 10 page loads</p>
 					</td>
 				</tr>
-
-				<tr valign="top">
-				<th scope="row"></th>
-				<td>
-					<p><span class="description"><?php echo __( 'These weights represent the percentage for which the Global Adsense ID will be used compared to the Author Adsense ID when on a post and the author has their ID set. For example, if each of these is set to 65, then the Global Adsense ID will be used for the ads 65% of the time and the Author ID will be used 35% of the time.', 'adsense_owner_author_split' ); ?></span></p>
-				</td>
-			</tr>
-
 
 			</tbody>
 		</table>

@@ -130,7 +130,7 @@ class Adsense_Owner_Author_Split {
 		if( $hide_global == 1 && $hide_post != 'show-ads' || $hide_post == 'hide-ads' )
 			return;
 
-		echo '<script>document.write(aboveAdsSplit[Math.floor(Math.random()*10)]);</script>';
+		echo '<div class="gb-ad gb-above-ad"><script>document.write(aboveAdsSplit[Math.floor(Math.random()*10)]);</script></div>';
 	}
 
 	/**
@@ -152,7 +152,7 @@ class Adsense_Owner_Author_Split {
 		if( $hide_global == 1 && $hide_post != 'show-ads' || $hide_post == 'hide-ads' )
 			return;
 
-		echo '<script>document.write(belowAdsSplit[Math.floor(Math.random()*10)]);</script>';
+		echo '<div class="gb-ad gb-below-ad"><script>document.write(belowAdsSplit[Math.floor(Math.random()*10)]);</script></div>';
 	}
 
  }

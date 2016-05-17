@@ -102,7 +102,7 @@ class Shortcode {
 
 		wp_print_scripts( 'gb-adsense-shortcode-split' );
 
-		echo '<script>document.write(shortcodeAdsSplit[Math.floor(Math.random()*10)]);</script>';
+		echo '<div class="gb-ad gb-shortcode-ad"><script>document.write(shortcodeAdsSplit[Math.floor(Math.random()*10)]);</script></div>';
 
 		$shortcode_ad = ob_get_clean();
 
