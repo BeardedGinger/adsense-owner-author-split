@@ -19,17 +19,17 @@
 	var aboveCount = 0,
 		belowCount = 0;
 
-		while(aboveCount<aboveAds.length) {
-			for(i=0; i<aboveAdWeights[aboveCount]; i++ )
-				aboveAdsSplit[aboveAdsSplit.length]=aboveAds[aboveCount]
-			aboveCount++
-		}
+	while(aboveCount<aboveAds.length) {
+		for(i=0; i<aboveAdWeights[aboveCount]; i++ )
+			aboveAdsSplit[aboveAdsSplit.length]=aboveAds[aboveCount]
+		aboveCount++
+	}
 
-		while(belowCount<belowAds.length) {
-			for(i=0; i<belowAdWeights[belowCount]; i++ )
-				belowAdsSplit[belowAdsSplit.length]=belowAds[belowCount]
-			belowCount++
-		}
+	while(belowCount<belowAds.length) {
+		for(i=0; i<belowAdWeights[belowCount]; i++ )
+			belowAdsSplit[belowAdsSplit.length]=belowAds[belowCount]
+		belowCount++
+	}
 
 
 })(window, document);

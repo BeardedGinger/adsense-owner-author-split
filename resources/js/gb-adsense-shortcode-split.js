@@ -17,6 +17,4 @@
 			shortcodeCount++
 		}
 
-		console.log(shortcodeAdsSplit);
-
 })(window, document);
