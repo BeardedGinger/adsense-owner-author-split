@@ -60,7 +60,7 @@ class Shortcode {
 	}
 
 	/**
-	 *
+	 * Load the set functions
 	 *
 	 * @since     1.0.0
 	 * @access    public
@@ -70,6 +70,22 @@ class Shortcode {
 		$this->owner_weight();
 		$this->owner_adsense_codes();
 	}
+
+	/**
+	 * Function to include ad shortcode by default to WYSIWYG
+	 * ~Limited to CB version~
+	 *
+	 * @since     1.0.0
+	 * @access    public
+	 */
+	public function shortcode_default_insert( $content ) {
+
+		$content = '[gb_ad]';
+
+		return $content;
+	}
+
+
 
 	/**
 	 * Shortcode build
