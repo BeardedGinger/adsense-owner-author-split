@@ -116,22 +116,51 @@ class Global_Settings extends \Genesis_Admin_Boxes {
  	 */
 	function metaboxes() {
 
-		add_meta_box(
-			'aoas_global_settings',
-			__( 'Content Ads and Weights', 'adsense_owner_author_split' ),
-			array( $this, 'metabox_fields' ),
-			$this->pagehook,
-			'main'
-		);
+		add_meta_box( 'aoas_default_settings', __( 'Defaults', 'adsense_owner_author_split' ), array( $this, 'default_settings' ), $this->pagehook, 'main' );
+		add_meta_box( 'aoas_above_ad_settings', __( 'Above-Content Ad', 'adsense_owner_author_split' ), array( $this, 'above_ad' ), $this->pagehook, 'main' );
+		add_meta_box( 'aoas_below_ad_settings', __( 'Below-Content Ad', 'adsense_owner_author_split' ), array( $this, 'below_ad' ), $this->pagehook, 'main' );
+		add_meta_box( 'aoas_shortcode_ad_settings', __( 'Shortcode Ad', 'adsense_owner_author_split' ), array( $this, 'shortcode_ad' ), $this->pagehook, 'main' );
 	}
 
 	/**
-	 * Build the fields for the metabox
+	 * Build the fields for the default settings metabox
 	 *
 	 * @since     1.0.0
 	 * @access    public
 	 */
-	public function metabox_fields() { ?>
+	public function default_settings() { ?>
+
+		<table class="form-table">
+			<tbody>
+				<tr valign="top">
+					<th scope="row"></th>
+					<td>
+						<p class="description"><?php _e( 'By default ads show automatically on all posts. Alternatively, check this box and ads will be hidden by default and then can be enabled on a per-post basis.', 'adsense_owner_author_split' ); ?></p>
+					</td>
+				</tr>
+
+				<tr valign="top">
+					<th scope="row"></th>
+					<td>
+						<p>
+							<label for="<?php $this->field_id( 'hide_content_ads' ); ?>"><input type="checkbox" name="<?php $this->field_name( 'hide_content_ads' ); ?>" id="<?php $this->field_id( 'hide_content_ads' ); ?>" value="1" <?php checked( $this->get_field_value( 'hide_content_ads' ) ); ?> /><?php _e( 'Hide Content Ads by Default', 'adsense_owner_author_split' ); ?></label>
+						</p>
+					</td>
+				</tr>
+
+			</tbody>
+		</table>
+
+	<?php
+	}
+
+	/**
+	 * Build the fields for the above ads metabox
+	 *
+	 * @since     1.0.0
+	 * @access    public
+	 */
+	public function above_ad() { ?>
 
 		<table class="form-table">
 			<tbody>
@@ -140,45 +169,70 @@ class Global_Settings extends \Genesis_Admin_Boxes {
 						document.querySelector(input).value = weight;
 					}
 				</script>
-				<tr valign="top">
-					<th scope="row"><?php _e( 'Hide Content Ads', 'adsense_owner_author_split' ); ?></th>
-					<td>
-						<p>
-							<label for="<?php $this->field_id( 'hide_content_ads' ); ?>"><input type="checkbox" name="<?php $this->field_name( 'hide_content_ads' ); ?>" id="<?php $this->field_id( 'hide_content_ads' ); ?>" value="1" <?php checked( $this->get_field_value( 'hide_content_ads' ) ); ?> />
-							<p><span class="description"><?php _e( 'By default, the ads will show on all posts and you can select to hide them on each individual post. Alternatively, selecting this option will hide the ads globally, allowing you to show them on individual posts', 'adsense_owner_author_split' ); ?></span></p></label>
-						</p>
-					</td>
-				</tr>
 
 				<tr valign="top">
-					<th scope="row"><label for="owner_above_adsense_code"><?php _e( 'Above Content Adsense Code', 'adsense_owner_author_split' ); ?></label></th>
+					<th scope="row"><label for="owner_above_adsense_code"><?php _e( 'Above-Content Adsense Code', 'adsense_owner_author_split' ); ?></label></th>
 					<td>
 						<p><textarea name="<?php echo $this->get_field_name( 'owner_above_adsense_code' ); ?>" class="regular-text" id="owner_above_adsense_code" cols="78" rows="8"><?php echo esc_attr( $this->get_field_value( 'owner_above_adsense_code' ) ); ?></textarea></p>
 					</td>
 				</tr>
 
 				<tr valign="top">
-					<th scope="row"><label for="owner_above_weight"><?php _e( 'Above Content Ad<br>Owner&apos;s Weight', 'adsense_owner_author_split' ); ?></label></th>
+					<th scope="row"><label for="owner_above_weight"><?php _e( 'Weight', 'adsense_owner_author_split' ); ?></label></th>
 					<td>
 						<p><input type="range" min="0" max="10" step="1" name="<?php echo $this->get_field_name( 'owner_above_weight' ); ?>" class="regular-text" id="owner_above_weight" value="<?php echo esc_attr( $this->get_field_value( 'owner_above_weight' ) ); ?>" oninput="outputUpdate('#owner_above_weight_output', value)" /></p>
 						<p class="description">Show the Owner's ad above the content for every <strong><output for="owner_above_weight" id="owner_above_weight_output"><?php echo esc_attr( $this->get_field_value( 'owner_above_weight' ) ); ?></output></strong> out of 10 page loads</p>
 					</td>
 				</tr>
 
+			</tbody>
+		</table>
+
+	<?php
+	}
+
+	/**
+	 * Build the fields for the below ad metabox
+	 *
+	 * @since     1.0.0
+	 * @access    public
+	 */
+	public function below_ad() { ?>
+
+		<table class="form-table">
+			<tbody>
+
 				<tr valign="top">
-					<th scope="row"><label for="owner_below_adsense_code"><?php _e( 'Below Content Adsense Code', 'adsense_owner_author_split' ); ?></label></th>
+					<th scope="row"><label for="owner_below_adsense_code"><?php _e( 'Below-Content Adsense Code', 'adsense_owner_author_split' ); ?></label></th>
 					<td>
 						<p><textarea name="<?php echo $this->get_field_name( 'owner_below_adsense_code' ); ?>" class="regular-text" id="owner_above_adsense_code" cols="78" rows="8"><?php echo esc_attr( $this->get_field_value( 'owner_below_adsense_code' ) ); ?></textarea></p>
 					</td>
 				</tr>
 
 				<tr valign="top">
-					<th scope="row"><label for="owner_below_weight"><?php _e( 'Below Content Ad<br>Owner&apos;s Weight', 'adsense_owner_author_split' ); ?></label></th>
+					<th scope="row"><label for="owner_below_weight"><?php _e( 'Weight', 'adsense_owner_author_split' ); ?></label></th>
 					<td>
 						<p><input type="range" min="0" max="10" step="1" name="<?php echo $this->get_field_name( 'owner_below_weight' ); ?>" class="regular-text" id="owner_below_weight" value="<?php echo esc_attr( $this->get_field_value( 'owner_below_weight' ) ); ?>" oninput="outputUpdate('#owner_below_weight_output', value)" /></p>
 						<p class="description">Show the Owner's ad below the content for every <strong><output for="owner_below_weight" id="owner_below_weight_output"><?php echo esc_attr( $this->get_field_value( 'owner_below_weight' ) ); ?></output></strong> out of 10 page loads</p>
 					</td>
 				</tr>
+
+			</tbody>
+		</table>
+
+	<?php
+	}
+
+	/**
+	 * Build the fields for the shortcode ad metabox
+	 *
+	 * @since     1.0.0
+	 * @access    public
+	 */
+	public function shortcode_ad() { ?>
+
+		<table class="form-table">
+			<tbody>
 
 				<tr valign="top">
 					<th scope="row"><label for="owner_shortcode_adsense_code"><?php _e( 'Shortcode Adsense Code', 'adsense_owner_author_split' ); ?></label></th>
@@ -188,7 +242,7 @@ class Global_Settings extends \Genesis_Admin_Boxes {
 				</tr>
 
 				<tr valign="top">
-					<th scope="row"><label for="owner_shortcode_weight"><?php _e( 'Shortcode Ad<br>Owner&apos;s Weight', 'adsense_owner_author_split' ); ?></label></th>
+					<th scope="row"><label for="owner_shortcode_weight"><?php _e( 'Weight', 'adsense_owner_author_split' ); ?></label></th>
 					<td>
 						<p><input type="range" min="0" max="10" step="1" name="<?php echo $this->get_field_name( 'owner_shortcode_weight' ); ?>" class="regular-text" id="owner_shortcode_weight" value="<?php echo esc_attr( $this->get_field_value( 'owner_shortcode_weight' ) ); ?>" oninput="outputUpdate('#owner_shortcode_weight_output', value)" /></p>
 						<p class="description">Show the Owner's ad in the shortcode for every <strong><output for="owner_shortcode_weight" id="owner_shortcode_weight_output"><?php echo esc_attr( $this->get_field_value( 'owner_shortcode_weight' ) ); ?></output></strong> out of 10 page loads</p>
