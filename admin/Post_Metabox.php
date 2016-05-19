@@ -79,8 +79,8 @@ class Metabox {
 						<p>
 							<label for="gb_adsense_hide_content_ads">
 							<select name="gb_adsense_hide_content_ads" id="gb_adsense_hide_content_ads" default="">
-								<option value="show-ads" <?php echo ( $show_selected ) ? 'selected' : ''; ?>>Show Ads</option>
-								<option value="hide-ads" <?php echo ( $hide_selected ) ? 'selected' : ''; ?>>Hide Ads</option>
+								<option value="show-ads" <?php echo ( $show_selected ) ? 'selected' : ''; ?>>Show Ads on Post</option>
+								<option value="hide-ads" <?php echo ( $hide_selected ) ? 'selected' : ''; ?>>Hide Ads on Post</option>
 							</select>
 							</label>
 						</p>
