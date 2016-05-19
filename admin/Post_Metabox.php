@@ -39,14 +39,11 @@ class Metabox {
 	 * @access    public
 	 */
 	public function metabox() {
-		add_meta_box(
-			'gb_post_ad_control',
-			__( 'Adsense Owner/Author Split', 'adsense-owner-author-split' ),
-			array( $this, 'metabox_options' ),
-			'post',
-			'side',
-			'high'
-		);
+
+		if( ! class_exists( 'Genesis_Admin_Boxes' ) )
+			return;
+
+		add_meta_box( 'gb_post_ad_control', __( 'Adsense Owner/Author Split', 'adsense-owner-author-split' ), array( $this, 'metabox_options' ), 'post', 'side', 'high' );
 	}
 
 	/**

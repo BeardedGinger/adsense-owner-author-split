@@ -117,6 +117,9 @@ class Shortcode {
 	 */
 	private function owner_weight() {
 
+		if( ! function_exists( 'genesis_get_option' ) )
+			return;
+
 		$owner_weight = genesis_get_option( 'owner_shortcode_weight', 'gingerbeard_adsense_settings_field' );
 
 		if( isset( $owner_weight ) ) {
@@ -132,6 +135,9 @@ class Shortcode {
 	 * @access    private
 	 */
 	private function owner_adsense_codes() {
+
+		if( ! function_exists( 'genesis_get_option' ) )
+			return;
 
 		$owner_shortcode = genesis_get_option( 'owner_shortcode_adsense_code', 'gingerbeard_adsense_settings_field' );
 

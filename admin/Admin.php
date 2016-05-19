@@ -51,6 +51,9 @@ class Admin {
 	 */
 	public function load_after_theme() {
 
+		if( ! class_exists( 'Genesis_Admin_Boxes' ) )
+			return;
+
 		require plugin_dir_path( __FILE__ ) . 'Global_Settings.php';
 
 	}
@@ -61,6 +64,9 @@ class Admin {
 	 * @since     1.0.0
 	 */
 	public function get_global_settings () {
+
+		if( ! class_exists( 'Genesis_Admin_Boxes' ) )
+			return;
 
 		$global_settings = Global_Settings\Global_Settings::instance();
 
