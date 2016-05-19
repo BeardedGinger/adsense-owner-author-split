@@ -3,9 +3,9 @@
  * @since       1.0.0
  * @package     adsense-owner-author-split
  *
- * Plugin Name:     Adsense Owner/Author Split
+ * Plugin Name:     Owner/Author Ad Split for Genesis
  * Plugin URI:      https://github.com/BeardedGinger/adsense-owner-author-split
- * Description:     Allows for site owners and bloggers to split Adsense IDs used when displaying ads in blog posts
+ * Description:     Built specifically for use with the Genesis Framework, split ad space with post author and set how often your ad displays vs the post author's ad
  * Version:         1.0.0
  * Author:          Josh Mallard
  * Author URI:      http://gingercult.com

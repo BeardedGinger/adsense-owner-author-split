@@ -47,8 +47,8 @@ class Global_Settings extends \Genesis_Admin_Boxes {
 		$menu_ops = array(
 			'submenu' => array(
 				'parent_slug'  => 'genesis',
-				'page_title'   => __( 'Adsense Owner/Author Split', 'adsense_owner_author_split' ),
-				'menu_title'   => __( 'Adsense Split', 'adsense_owner_author_split' )
+				'page_title'   => __( 'Owner/Author Ad Split Settings', 'adsense_owner_author_split' ),
+				'menu_title'   => __( 'Ad Split', 'adsense_owner_author_split' )
 			)
 		);
 
