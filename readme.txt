@@ -46,10 +46,6 @@ By default, if ad codes are added for either the site owner or the post author, 
 = Why can't authors set their own ad codes? =
 Setting of the ad codes is limited to users that have the ability to save unfiltered html. This is available for the Editor role and up. This is a security measure since ads include script tags and prevents malicious code from being saved and then presented on the front-end of your site
 
-== Screenshots ==
-
-1. Button added to the WYSIWYG
-
 
 == Changelog ==
 
