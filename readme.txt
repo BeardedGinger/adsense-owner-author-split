@@ -19,17 +19,20 @@ The plugin has the option to include ad spaces by default above and below the po
 = Ad Codes & Weights =
 
 **Site Owner**
+
 When activated alongside the Genesis Framework, you will be able to add your Above-content, Below-content, and Shortcode ad codes via the new "Ad Split" dashboard menu section within the Genesis Settings.
 
 These settings will also allow you to set the percentage for which your ad for each of these locations will display over the Author's ad.
 
 **Post Authors**
+
 Ad codes for the post authors can be added via the users profile page.
 
 = Displaying Ads =
 By default, if ad codes are added for either the site owner or the post author, ads will display above and below the content. There are two ways to modify this behavior:
-1. Allow ads to display globally and hide on specific posts using the settings available on the post edit screen
-2. Turn off the display by default globally within the plugin settings found within the Genesis Admin section under the "Ad Split" menu item. You can then turn the ads on for specific posts using the settings available on the post edit screen
+
+*	Allow ads to display globally and hide on specific posts using the settings available on the post edit screen
+*	Turn off the display by default globally within the plugin settings found within the Genesis Admin section under the "Ad Split" menu item. You can then turn the ads on for specific posts using the settings available on the post edit screen
 
 
 == Installation ==
@@ -46,6 +49,10 @@ By default, if ad codes are added for either the site owner or the post author, 
 = Why can't authors set their own ad codes? =
 Setting of the ad codes is limited to users that have the ability to save unfiltered html. This is available for the Editor role and up. This is a security measure since ads include script tags and prevents malicious code from being saved and then presented on the front-end of your site
 
+== Screenshots ==
+
+Set the site owner ads and display weight
+Set the post author ads on their profile page
 
 == Changelog ==
 
