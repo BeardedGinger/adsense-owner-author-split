@@ -118,8 +118,8 @@ class Global_Settings extends \Genesis_Admin_Boxes {
 
 		add_meta_box( 'aoas_default_settings', __( 'Defaults', 'adsense_owner_author_split' ), array( $this, 'default_settings' ), $this->pagehook, 'main' );
 		add_meta_box( 'aoas_above_ad_settings', __( 'Above-Content Ad', 'adsense_owner_author_split' ), array( $this, 'above_ad' ), $this->pagehook, 'main' );
+		add_meta_box( 'aoas_shortcode_ad_settings', __( 'Content Ad', 'adsense_owner_author_split' ), array( $this, 'shortcode_ad' ), $this->pagehook, 'main' );
 		add_meta_box( 'aoas_below_ad_settings', __( 'Below-Content Ad', 'adsense_owner_author_split' ), array( $this, 'below_ad' ), $this->pagehook, 'main' );
-		add_meta_box( 'aoas_shortcode_ad_settings', __( 'Shortcode Ad', 'adsense_owner_author_split' ), array( $this, 'shortcode_ad' ), $this->pagehook, 'main' );
 	}
 
 	/**
@@ -171,7 +171,7 @@ class Global_Settings extends \Genesis_Admin_Boxes {
 				</script>
 
 				<tr valign="top">
-					<th scope="row"><label for="owner_above_adsense_code"><?php _e( 'Above-Content Adsense Code', 'adsense_owner_author_split' ); ?></label></th>
+					<th scope="row"><label for="owner_above_adsense_code"><?php _e( 'Above-Content Ad Code', 'adsense_owner_author_split' ); ?></label></th>
 					<td>
 						<p><textarea name="<?php echo $this->get_field_name( 'owner_above_adsense_code' ); ?>" class="regular-text" id="owner_above_adsense_code" cols="78" rows="8"><?php echo esc_attr( $this->get_field_value( 'owner_above_adsense_code' ) ); ?></textarea></p>
 					</td>
@@ -182,38 +182,6 @@ class Global_Settings extends \Genesis_Admin_Boxes {
 					<td>
 						<p><input type="range" min="0" max="10" step="1" name="<?php echo $this->get_field_name( 'owner_above_weight' ); ?>" class="regular-text" id="owner_above_weight" value="<?php echo esc_attr( $this->get_field_value( 'owner_above_weight' ) ); ?>" oninput="outputUpdate('#owner_above_weight_output', value)" /></p>
 						<p class="description">Show the Owner's ad above the content for every <strong><output for="owner_above_weight" id="owner_above_weight_output"><?php echo esc_attr( $this->get_field_value( 'owner_above_weight' ) ); ?></output></strong> out of 10 page loads</p>
-					</td>
-				</tr>
-
-			</tbody>
-		</table>
-
-	<?php
-	}
-
-	/**
-	 * Build the fields for the below ad metabox
-	 *
-	 * @since     1.0.0
-	 * @access    public
-	 */
-	public function below_ad() { ?>
-
-		<table class="form-table">
-			<tbody>
-
-				<tr valign="top">
-					<th scope="row"><label for="owner_below_adsense_code"><?php _e( 'Below-Content Adsense Code', 'adsense_owner_author_split' ); ?></label></th>
-					<td>
-						<p><textarea name="<?php echo $this->get_field_name( 'owner_below_adsense_code' ); ?>" class="regular-text" id="owner_above_adsense_code" cols="78" rows="8"><?php echo esc_attr( $this->get_field_value( 'owner_below_adsense_code' ) ); ?></textarea></p>
-					</td>
-				</tr>
-
-				<tr valign="top">
-					<th scope="row"><label for="owner_below_weight"><?php _e( 'Weight', 'adsense_owner_author_split' ); ?></label></th>
-					<td>
-						<p><input type="range" min="0" max="10" step="1" name="<?php echo $this->get_field_name( 'owner_below_weight' ); ?>" class="regular-text" id="owner_below_weight" value="<?php echo esc_attr( $this->get_field_value( 'owner_below_weight' ) ); ?>" oninput="outputUpdate('#owner_below_weight_output', value)" /></p>
-						<p class="description">Show the Owner's ad below the content for every <strong><output for="owner_below_weight" id="owner_below_weight_output"><?php echo esc_attr( $this->get_field_value( 'owner_below_weight' ) ); ?></output></strong> out of 10 page loads</p>
 					</td>
 				</tr>
 
@@ -235,7 +203,7 @@ class Global_Settings extends \Genesis_Admin_Boxes {
 			<tbody>
 
 				<tr valign="top">
-					<th scope="row"><label for="owner_shortcode_adsense_code"><?php _e( 'Shortcode Adsense Code', 'adsense_owner_author_split' ); ?></label></th>
+					<th scope="row"><label for="owner_shortcode_adsense_code"><?php _e( 'Content Ad Code', 'adsense_owner_author_split' ); ?></label></th>
 					<td>
 						<p><textarea name="<?php echo $this->get_field_name( 'owner_shortcode_adsense_code' ); ?>" class="regular-text" id="owner_shortcode_adsense_code" cols="78" rows="8"><?php echo esc_attr( $this->get_field_value( 'owner_shortcode_adsense_code' ) ); ?></textarea></p>
 					</td>
@@ -246,6 +214,38 @@ class Global_Settings extends \Genesis_Admin_Boxes {
 					<td>
 						<p><input type="range" min="0" max="10" step="1" name="<?php echo $this->get_field_name( 'owner_shortcode_weight' ); ?>" class="regular-text" id="owner_shortcode_weight" value="<?php echo esc_attr( $this->get_field_value( 'owner_shortcode_weight' ) ); ?>" oninput="outputUpdate('#owner_shortcode_weight_output', value)" /></p>
 						<p class="description">Show the Owner's ad in the shortcode for every <strong><output for="owner_shortcode_weight" id="owner_shortcode_weight_output"><?php echo esc_attr( $this->get_field_value( 'owner_shortcode_weight' ) ); ?></output></strong> out of 10 page loads</p>
+					</td>
+				</tr>
+
+			</tbody>
+		</table>
+
+	<?php
+	}
+
+	/**
+	 * Build the fields for the below ad metabox
+	 *
+	 * @since     1.0.0
+	 * @access    public
+	 */
+	public function below_ad() { ?>
+
+		<table class="form-table">
+			<tbody>
+
+				<tr valign="top">
+					<th scope="row"><label for="owner_below_adsense_code"><?php _e( 'Below-Content Ad Code', 'adsense_owner_author_split' ); ?></label></th>
+					<td>
+						<p><textarea name="<?php echo $this->get_field_name( 'owner_below_adsense_code' ); ?>" class="regular-text" id="owner_above_adsense_code" cols="78" rows="8"><?php echo esc_attr( $this->get_field_value( 'owner_below_adsense_code' ) ); ?></textarea></p>
+					</td>
+				</tr>
+
+				<tr valign="top">
+					<th scope="row"><label for="owner_below_weight"><?php _e( 'Weight', 'adsense_owner_author_split' ); ?></label></th>
+					<td>
+						<p><input type="range" min="0" max="10" step="1" name="<?php echo $this->get_field_name( 'owner_below_weight' ); ?>" class="regular-text" id="owner_below_weight" value="<?php echo esc_attr( $this->get_field_value( 'owner_below_weight' ) ); ?>" oninput="outputUpdate('#owner_below_weight_output', value)" /></p>
+						<p class="description">Show the Owner's ad below the content for every <strong><output for="owner_below_weight" id="owner_below_weight_output"><?php echo esc_attr( $this->get_field_value( 'owner_below_weight' ) ); ?></output></strong> out of 10 page loads</p>
 					</td>
 				</tr>
 
