@@ -197,7 +197,10 @@ class Global_Settings extends \Genesis_Admin_Boxes {
 	 * @since     1.0.0
 	 * @access    public
 	 */
-	public function shortcode_ad() { ?>
+	public function shortcode_ad() {
+
+		$shortcode = '<code>[gb_ad]</code>';
+		?>
 
 		<table class="form-table">
 			<tbody>
@@ -214,6 +217,13 @@ class Global_Settings extends \Genesis_Admin_Boxes {
 					<td>
 						<p><input type="range" min="0" max="10" step="1" name="<?php echo $this->get_field_name( 'owner_shortcode_weight' ); ?>" class="regular-text" id="owner_shortcode_weight" value="<?php echo esc_attr( $this->get_field_value( 'owner_shortcode_weight' ) ); ?>" oninput="outputUpdate('#owner_shortcode_weight_output', value)" /></p>
 						<p class="description">Show the Owner's ad in the shortcode for every <strong><output for="owner_shortcode_weight" id="owner_shortcode_weight_output"><?php echo esc_attr( $this->get_field_value( 'owner_shortcode_weight' ) ); ?></output></strong> out of 10 page loads</p>
+					</td>
+				</tr>
+
+				<tr valign="top">
+					<th scope="row"></th>
+					<td>
+						<p class="description"><?php printf( esc_html__( 'Include content ad within your content by using the %s shortcode', 'adsense_owner_author_split' ), $shortcode ); ?></p>
 					</td>
 				</tr>
 
@@ -250,6 +260,7 @@ class Global_Settings extends \Genesis_Admin_Boxes {
 				</tr>
 
 			</tbody>
+
 		</table>
 
 	<?php
