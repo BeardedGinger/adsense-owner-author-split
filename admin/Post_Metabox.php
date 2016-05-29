@@ -90,7 +90,17 @@ class Metabox {
 				<tr valign="top">
 					<td>
 						<p class="description">
-							<?php _e( 'This option determines whether the automatic above and below content ads will display on this post', 'adsense-owner-author-split' ); ?>
+							<?php
+								_e( 'This option determines whether the automatic above and below content ads will display on this post', 'adsense-owner-author-split' );
+							?>
+						</p>
+					</td>
+				</tr>
+
+				<tr valign="top">
+					<td>
+						<p>
+							<?php $this->update_ad_codes(); ?>
 						</p>
 					</td>
 				</tr>
@@ -125,6 +135,24 @@ class Metabox {
 		$hide = $_POST['gb_adsense_hide_content_ads'];
 
 		update_post_meta( $post_id, 'gb_adsense_hide_content_ads', $hide );
+	}
+
+	/**
+	 * Prompt users that can save their profile ads to include them
+	 * if they haven't been added yet
+	 *
+	 * @since     1.1.0
+	 * @access    public
+	 */
+	public function update_ad_codes() {
+
+		if( ! current_user_can( 'unfiltered_html' ) )
+			return;
+
+		$profile_link = get_edit_user_link( get_current_user_id() );
+
+		echo '<a href="' . $profile_link . '#aoas-profile-settings" target="_blank">' . __( 'Update Your Ad Codes', 'adsense-owner-author-split') . '</a>';
+
 	}
 
 }

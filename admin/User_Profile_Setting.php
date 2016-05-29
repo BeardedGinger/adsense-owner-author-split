@@ -40,7 +40,7 @@ class Profile_Setting {
 	 */
 	public static function user_meta( $user ) { ?>
 
-		<h3><?php echo __( 'Adsense Owner/Author Split', 'adsense_owner_author_split' ); ?></h3>
+		<h3 id="aoas-profile-settings"><?php echo __( 'Adsense Owner/Author Split', 'adsense_owner_author_split' ); ?></h3>
 
 		<table class="form-table">
 			<tr>

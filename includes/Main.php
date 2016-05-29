@@ -57,8 +57,8 @@ class Adsense_Owner_Author_Split {
 
 		require plugin_dir_path( __FILE__ ) . 'Content_Ads.php';
 
-		add_action( 'genesis_entry_content', array( $this, 'before_content_ad' ), 0 );
-		add_action( 'genesis_entry_content', array( $this, 'below_content_ad' ), 10 );
+		add_action( 'genesis_entry_content', array( $this, 'before_content_ad' ), apply_filters( 'above_content_ad_priority', 0 ) );
+		add_action( 'genesis_entry_content', array( $this, 'below_content_ad' ), apply_filters( 'below_content_ad_priority', 10 ) );
 
 	}
 

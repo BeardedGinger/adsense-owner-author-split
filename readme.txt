@@ -59,6 +59,9 @@ Set the post author ads on their profile page
 = 1.1.0 =
 * Update shortcode ad wording to "Content Ad"
 * Added shortcode reference to global settings page
+* Update title and wording on postmeta box
+* Made select options on postmeta box translatable
+* Added post metabox prompt to update ad codes
 
 = 1.0.0 =
 * Initial Plugin Release
