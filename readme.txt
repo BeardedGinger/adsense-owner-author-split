@@ -62,6 +62,7 @@ Set the post author ads on their profile page
 * Update title and wording on postmeta box
 * Made select options on postmeta box translatable
 * Added post metabox prompt to update ad codes
+* Added filters (above_content_ad_priority and below_content_ad_priority) for changing the priority on the automatic content ads
 
 = 1.0.0 =
 * Initial Plugin Release
