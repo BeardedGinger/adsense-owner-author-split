@@ -43,7 +43,7 @@ class Metabox {
 		if( ! class_exists( 'Genesis_Admin_Boxes' ) )
 			return;
 
-		add_meta_box( 'gb_post_ad_control', __( 'Adsense Owner/Author Split', 'adsense-owner-author-split' ), array( $this, 'metabox_options' ), 'post', 'side', 'high' );
+		add_meta_box( 'gb_post_ad_control', __( 'Automatic Ad Blocks', 'adsense-owner-author-split' ), array( $this, 'metabox_options' ), 'post', 'side', 'high' );
 	}
 
 	/**
@@ -79,10 +79,18 @@ class Metabox {
 						<p>
 							<label for="gb_adsense_hide_content_ads">
 							<select name="gb_adsense_hide_content_ads" id="gb_adsense_hide_content_ads" default="">
-								<option value="show-ads" <?php echo ( $show_selected ) ? 'selected' : ''; ?>>Show Ads on Post</option>
-								<option value="hide-ads" <?php echo ( $hide_selected ) ? 'selected' : ''; ?>>Hide Ads on Post</option>
+								<option value="show-ads" <?php echo ( $show_selected ) ? 'selected' : ''; ?>><?php _e( 'Show Automatic Ads on Post', 'adsense-owner-author-split' ); ?></option>
+								<option value="hide-ads" <?php echo ( $hide_selected ) ? 'selected' : ''; ?>><?php _e( 'Hide Automatic Ads on Post', 'adsense-owner-author-split' ); ?></option>
 							</select>
 							</label>
+						</p>
+					</td>
+				</tr>
+
+				<tr valign="top">
+					<td>
+						<p class="description">
+							<?php _e( 'This option determines whether the automatic above and below content ads will display on this post', 'adsense-owner-author-split' ); ?>
 						</p>
 					</td>
 				</tr>

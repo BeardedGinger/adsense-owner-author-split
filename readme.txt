@@ -56,6 +56,10 @@ Set the post author ads on their profile page
 
 == Changelog ==
 
+= 1.1.0 =
+* Update shortcode ad wording to "Content Ad"
+* Added shortcode reference to global settings page
+
 = 1.0.0 =
 * Initial Plugin Release
 
