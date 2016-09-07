@@ -40,22 +40,22 @@ class Profile_Setting {
 	 */
 	public static function user_meta( $user ) { ?>
 
-		<h3 id="aoas-profile-settings"><?php echo __( 'Adsense Owner/Author Split', 'owner_author_ad_split' ); ?></h3>
+		<h3 id="aoas-profile-settings"><?php echo __( 'Owner/Author Ad Split', 'owner_author_ad_split' ); ?></h3>
 
 		<table class="form-table">
 			<tr>
-				<th><label for="author_above_adsense_code"><?php echo __( 'Above Content Adsense Code', 'owner_author_ad_split' ); ?></label>
+				<th><label for="author_above_adsense_code"><?php echo __( 'Above-Content Ad Code', 'owner_author_ad_split' ); ?></label>
 				<td><textarea name="author_above_adsense_code" cols="78" rows="8"><?php echo esc_attr(get_the_author_meta( 'author_above_adsense_code', $user->ID )); ?></textarea></td>
 			</tr>
 
 			<tr>
-				<th><label for="author_below_adsense_code"><?php echo __( 'Below Content Adsense Code', 'owner_author_ad_split' ); ?></label>
-				<td><textarea name="author_below_adsense_code" cols="78" rows="8"><?php echo esc_attr(get_the_author_meta( 'author_below_adsense_code', $user->ID )); ?></textarea></td>
+				<th><label for="author_shortcode_adsense_code"><?php echo __( 'Content Ad Code', 'owner_author_ad_split' ); ?></label>
+				<td><textarea name="author_shortcode_adsense_code" cols="78" rows="8"><?php echo esc_attr(get_the_author_meta( 'author_shortcode_adsense_code', $user->ID )); ?></textarea></td>
 			</tr>
 
 			<tr>
-				<th><label for="author_shortcode_adsense_code"><?php echo __( 'Shortcode Adsense Code', 'owner_author_ad_split' ); ?></label>
-				<td><textarea name="author_shortcode_adsense_code" cols="78" rows="8"><?php echo esc_attr(get_the_author_meta( 'author_shortcode_adsense_code', $user->ID )); ?></textarea></td>
+				<th><label for="author_below_adsense_code"><?php echo __( 'Below-Content Ad Code', 'owner_author_ad_split' ); ?></label>
+				<td><textarea name="author_below_adsense_code" cols="78" rows="8"><?php echo esc_attr(get_the_author_meta( 'author_below_adsense_code', $user->ID )); ?></textarea></td>
 			</tr>
 
 			<?php wp_nonce_field( 'aoas_user_save', 'aoas_user_save_nonce' ); ?>
