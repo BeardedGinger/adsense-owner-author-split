@@ -39,10 +39,10 @@ class Owner_Author_Ad_Split {
 	 */
 	public function __construct() {
 
-		// shortcode
+		// Add the shortcodes.
 		add_action( 'after_setup_theme', array( $this, 'ad_shortcodes' ) );
 
-		// place the content ads
+		// Place the content ads.
 		add_action( 'after_setup_theme', array( $this, 'place_content_ads' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'scripts' ) );
 
@@ -87,30 +87,26 @@ class Owner_Author_Ad_Split {
 	 */
 	public function scripts() {
 
-		// register the shortcode ad js only when shortcode is used
+		// Register the shortcode ad js only when shortcode is used.
 		wp_register_script( 'gb-adsense-shortcode-split', plugin_dir_url( __FILE__ ) . '../resources/js/gb-adsense-shortcode-split.js', array(), $this->version, false );
 
-		// If we're not running genesis, don't do anything
-		if( ! function_exists( 'genesis' ) )
+		// If we're not running genesis, don't do anything.
+		if ( ! function_exists( 'genesis' ) )
 			return;
 
 		$hide_global = genesis_get_option( 'hide_content_ads', 'lc_ad_split_settings_field' );
 		$hide_post = get_post_meta( get_the_ID(), 'gb_adsense_hide_content_ads', true );
 
-		// If global default hide & Add screen
-		if( $hide_global == 1 && $hide_post != 'show-ads' || $hide_post == 'hide-ads' )
-			return;
-
 		wp_enqueue_script( 'gb-adsense-split', plugin_dir_url( __FILE__ ) . '../resources/js/gb-adsense-split.js', array(), $this->version, false );
 
-		// Localize the script with all of our ads and weights
+		// Localize the script with all of our ads and weights.
 		wp_localize_script( 'gb-adsense-split', 'LC_CONTENT_ADS', array(
 			'owner_above_ad'      => Content_Ads\Ads::instance()->owner_above_ad,
 			'owner_above_weight'  => Content_Ads\Ads::instance()->owner_above_weight,
 			'owner_below_ad'      => Content_Ads\Ads::instance()->owner_below_ad,
 			'owner_below_weight'  => Content_Ads\Ads::instance()->owner_below_weight,
 			'author_above_ad'     => Content_Ads\Ads::instance()->author_above_ad,
-			'author_below_ad'     => Content_Ads\Ads::instance()->author_below_ad
+			'author_below_ad'     => Content_Ads\Ads::instance()->author_below_ad,
 		) );
 	}
 
@@ -195,6 +191,18 @@ class Owner_Author_Ad_Split {
 			return;
 
 		ob_start();
+
+			wp_enqueue_script( 'gb-adsense-split', plugin_dir_url( __FILE__ ) . '../resources/js/gb-adsense-split.js', array(), $this->version, false );
+
+			// Localize the script with all of our ads and weights
+			wp_localize_script( 'gb-adsense-split', 'LC_CONTENT_ADS', array(
+				'owner_above_ad'      => Content_Ads\Ads::instance()->owner_above_ad,
+				'owner_above_weight'  => Content_Ads\Ads::instance()->owner_above_weight,
+				'owner_below_ad'      => Content_Ads\Ads::instance()->owner_below_ad,
+				'owner_below_weight'  => Content_Ads\Ads::instance()->owner_below_weight,
+				'author_above_ad'     => Content_Ads\Ads::instance()->author_above_ad,
+				'author_below_ad'     => Content_Ads\Ads::instance()->author_below_ad
+			) );
 
 			echo '<div class="gb-ad gb-below-ad"><script>document.write(belowAdsSplit[Math.floor(Math.random()*10)]);</script></div>';
 
