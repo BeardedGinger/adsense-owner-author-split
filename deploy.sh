@@ -3,15 +3,15 @@
 # The difference is that this script lives in the plugin's git repo & doesn't require an existing SVN repo.
 
 # main config
-PLUGINSLUG="adsense-owner-author-split"
+PLUGINSLUG="owner-author-ad-split"
 CURRENTDIR=`pwd`
-MAINFILE="adsense-owner-author-split.php" # this should be the name of your main php file in the wordpress plugin
+MAINFILE="owner-author-ad-split.php" # this should be the name of your main php file in the wordpress plugin
 
 # git config
 GITPATH="$CURRENTDIR/" # this file should be in the base of your git repository
 
 # svn config
-SVNPATH="/tmp/adsense-owner-author-split" # path to a temp SVN repo. No trailing slash required and don't add trunk.
+SVNPATH="/tmp/owner-author-ad-split" # path to a temp SVN repo. No trailing slash required and don't add trunk.
 SVNURL="https://plugins.svn.wordpress.org/ownerauthor-ad-split-for-genesis/" # Remote SVN repo on wordpress.org, with no trailing slash
 SVNUSER="joshlimecuda" # your svn username
 

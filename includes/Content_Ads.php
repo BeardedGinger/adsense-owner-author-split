@@ -4,12 +4,12 @@
  * end of blog posts
  *
  * @since      1.0.0
- * @package    adsense-owner-author-split
- * @subpackage adsense-owner-author-split/includes
+ * @package    owner-author-ad-split
+ * @subpackage owner-author-ad-split/includes
  * @author     Josh Mallard <josh@limecuda.com>
  */
 
-namespace GingerBeard\Adsense_Owner_Author_Split\Content_Ads;
+namespace LimeCuda\Owner_Author_Ad_Split\Content_Ads;
 
 class Ads {
 
@@ -108,8 +108,8 @@ class Ads {
 	 */
 	public function owner_weights() {
 
-		$above_weight = genesis_get_option( 'owner_above_weight', 'gingerbeard_adsense_settings_field' );
-		$below_weight = genesis_get_option( 'owner_below_weight', 'gingerbeard_adsense_settings_field' );
+		$above_weight = genesis_get_option( 'owner_above_weight', 'lc_ad_split_settings_field' );
+		$below_weight = genesis_get_option( 'owner_below_weight', 'lc_ad_split_settings_field' );
 
 		if( isset( $above_weight ) ) {
 			$this->owner_above_weight = $above_weight;
@@ -130,8 +130,8 @@ class Ads {
 	 */
 	private function owner_adsense_codes() {
 
-		$owner_above = genesis_get_option( 'owner_above_adsense_code', 'gingerbeard_adsense_settings_field' );
-		$owner_below = genesis_get_option( 'owner_below_adsense_code', 'gingerbeard_adsense_settings_field' );
+		$owner_above = genesis_get_option( 'owner_above_adsense_code', 'lc_ad_split_settings_field' );
+		$owner_below = genesis_get_option( 'owner_below_adsense_code', 'lc_ad_split_settings_field' );
 
 		if( isset( $owner_above ) ) {
 			$this->owner_above_ad = $owner_above;

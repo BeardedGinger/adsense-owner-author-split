@@ -1,11 +1,11 @@
 (function (window, document) {
 
-	var ownerAboveAd = GINGERBEARD_CONTENT_ADS.owner_above_ad,
-		ownerAboveWeight = GINGERBEARD_CONTENT_ADS.owner_above_weight,
-		ownerBelowAd = GINGERBEARD_CONTENT_ADS.owner_below_ad,
-		ownerBelowWeight = GINGERBEARD_CONTENT_ADS.owner_below_weight,
-		authorAboveAd = GINGERBEARD_CONTENT_ADS.author_above_ad,
-		authorBelowAd = GINGERBEARD_CONTENT_ADS.author_below_ad;
+	var ownerAboveAd = LC_CONTENT_ADS.owner_above_ad,
+		ownerAboveWeight = LC_CONTENT_ADS.owner_above_weight,
+		ownerBelowAd = LC_CONTENT_ADS.owner_below_ad,
+		ownerBelowWeight = LC_CONTENT_ADS.owner_below_weight,
+		authorAboveAd = LC_CONTENT_ADS.author_above_ad,
+		authorBelowAd = LC_CONTENT_ADS.author_below_ad;
 
 	var aboveAds = [ ownerAboveAd, authorAboveAd ],
 		aboveAdWeights = [ ownerAboveWeight, 10-ownerAboveWeight ];

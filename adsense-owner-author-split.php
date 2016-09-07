@@ -1,18 +1,17 @@
 <?php
 /**
- * @since       1.0.0
- * @package     adsense-owner-author-split
- *
  * Plugin Name:     Owner/Author Ad Split for Genesis
- * Plugin URI:      https://github.com/BeardedGinger/adsense-owner-author-split
+ * Plugin URI:      http://fewerthanthree.com/plugin/ownerauthor-ad-split-for-genesis
  * Description:     Built specifically for use with the Genesis Framework, split ad space with post author and set how often your ad displays vs the post author's ad
  * Version:         1.1.0
  * Author:          Josh Mallard
- * Author URI:      http://gingercult.com
+ * Author URI:      http://fewerthanthree.com
  * License:         GPL-2.0+
  * License URI:     http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:     adsense_owner_author_split
+ * Text Domain:     owner-author-ad-split
  * Domain Path:     /languages
+ *
+ * @package   owner-author-ad-split
  */
 
 // If this file is called directly, abort.
@@ -23,16 +22,16 @@ if ( ! defined( 'WPINC' ) ) {
 include_once( 'includes/Main.php' );
 include_once( 'admin/Admin.php' );
 
-function gingerbeard_adsense_owner_author_split() {
-	new GingerBeard\Adsense_Owner_Author_Split\Adsense_Owner_Author_Split();
+function lc_owner_author_ad_split() {
+	new LimeCuda\Owner_Author_Ad_Split\Owner_Author_Ad_Split();
 }
 
-gingerbeard_adsense_owner_author_split();
+lc_owner_author_ad_split();
 
-function gingerbeard_adsense_owner_author_split_admin() {
-	if( is_admin() ) {
-		new GingerBeard\Adsense_Owner_Author_Split\Admin\Admin();
+function lc_owner_author_ad_split_admin() {
+	if ( is_admin() ) {
+		new LimeCuda\Owner_Author_Ad_Split\Admin\Admin();
 	}
 }
 
-gingerbeard_adsense_owner_author_split_admin();
+lc_owner_author_ad_split_admin();

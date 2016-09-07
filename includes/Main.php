@@ -4,13 +4,14 @@
  * the world turn
  *
  * @since      1.0.0
- * @package    adsense-owner-author-split
+ * @package    owner-author-ad-split
+ * @subpackage owner-author-ad-split/includes
  * @author     Josh Mallard <josh@limecuda.com>
  */
 
-namespace GingerBeard\Adsense_Owner_Author_Split;
+namespace LimeCuda\Owner_Author_Ad_Split;
 
-class Adsense_Owner_Author_Split {
+class Owner_Author_Ad_Split {
 
  	/**
 	 * Plugin version, used for cache-busting of style and script file references.
@@ -27,7 +28,7 @@ class Adsense_Owner_Author_Split {
 	 * @since    1.0.0
 	 * @var      string
 	 */
-	protected $plugin_slug = 'adsense_owner_author_split';
+	protected $plugin_slug = 'owner_author_ad_split';
 
 	/**
 	 * Load the necessary files and hook everything up to the appropriate
@@ -91,7 +92,7 @@ class Adsense_Owner_Author_Split {
 		if( ! function_exists( 'genesis' ) )
 			return;
 
-		$hide_global = genesis_get_option( 'hide_content_ads', 'gingerbeard_adsense_settings_field' );
+		$hide_global = genesis_get_option( 'hide_content_ads', 'lc_ad_split_settings_field' );
 		$hide_post = get_post_meta( get_the_ID(), 'gb_adsense_hide_content_ads', true );
 
 		// If global default hide & Add screen
@@ -101,7 +102,7 @@ class Adsense_Owner_Author_Split {
 		wp_enqueue_script( 'gb-adsense-split', plugin_dir_url( __FILE__ ) . '../resources/js/gb-adsense-split.js', array(), $this->version, false );
 
 		// Localize the script with all of our ads and weights
-		wp_localize_script( 'gb-adsense-split', 'GINGERBEARD_CONTENT_ADS', array(
+		wp_localize_script( 'gb-adsense-split', 'LC_CONTENT_ADS', array(
 			'owner_above_ad'      => Content_Ads\Ads::instance()->owner_above_ad,
 			'owner_above_weight'  => Content_Ads\Ads::instance()->owner_above_weight,
 			'owner_below_ad'      => Content_Ads\Ads::instance()->owner_below_ad,
@@ -123,7 +124,7 @@ class Adsense_Owner_Author_Split {
 		if( ! function_exists( 'genesis' ) )
 			return;
 
-		$hide_global = genesis_get_option( 'hide_content_ads', 'gingerbeard_adsense_settings_field' );
+		$hide_global = genesis_get_option( 'hide_content_ads', 'lc_ad_split_settings_field' );
 		$hide_post = get_post_meta( get_the_ID(), 'gb_adsense_hide_content_ads', true );
 
 		// If global default hide & Add screen
@@ -145,7 +146,7 @@ class Adsense_Owner_Author_Split {
 		if( ! function_exists( 'genesis' ) )
 			return;
 
-		$hide_global = genesis_get_option( 'hide_content_ads', 'gingerbeard_adsense_settings_field' );
+		$hide_global = genesis_get_option( 'hide_content_ads', 'lc_ad_split_settings_field' );
 		$hide_post = get_post_meta( get_the_ID(), 'gb_adsense_hide_content_ads', true );
 
 		// If global default hide & Add screen

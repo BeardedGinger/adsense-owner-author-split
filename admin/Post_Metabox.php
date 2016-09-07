@@ -3,12 +3,12 @@
  * Adds the metabox on posts to control display of content ads
  *
  * @since      1.0.0
- * @package    adsense-owner-author-split
- * @subpackage adsense-owner-author-split/admin
+ * @package    owner-author-ad-split
+ * @subpackage owner-author-ad-split/admin
  * @author     Josh Mallard <josh@limecuda.com>
  */
 
-namespace GingerBeard\Adsense_Owner_Author_Split\Admin\Post_Metabox;
+namespace LimeCuda\Owner_Author_Ad_Split\Admin\Post_Metabox;
 
 class Metabox {
 
@@ -43,7 +43,7 @@ class Metabox {
 		if( ! class_exists( 'Genesis_Admin_Boxes' ) )
 			return;
 
-		add_meta_box( 'gb_post_ad_control', __( 'Automatic Ad Blocks', 'adsense-owner-author-split' ), array( $this, 'metabox_options' ), 'post', 'side', 'high' );
+		add_meta_box( 'gb_post_ad_control', __( 'Automatic Ad Blocks', 'owner-author-ad-split' ), array( $this, 'metabox_options' ), 'post', 'side', 'high' );
 	}
 
 	/**
@@ -56,7 +56,7 @@ class Metabox {
 
 		global $current_screen;
 
-		$hide_global = genesis_get_option( 'hide_content_ads', 'gingerbeard_adsense_settings_field' );
+		$hide_global = genesis_get_option( 'hide_content_ads', 'lc_ad_split_settings_field' );
 		$hide_post = get_post_meta( $post->ID, 'gb_adsense_hide_content_ads', true );
 
 		$hide_selected = false;
@@ -79,8 +79,8 @@ class Metabox {
 						<p>
 							<label for="gb_adsense_hide_content_ads">
 							<select name="gb_adsense_hide_content_ads" id="gb_adsense_hide_content_ads" default="">
-								<option value="show-ads" <?php echo ( $show_selected ) ? 'selected' : ''; ?>><?php _e( 'Show Automatic Ads on Post', 'adsense-owner-author-split' ); ?></option>
-								<option value="hide-ads" <?php echo ( $hide_selected ) ? 'selected' : ''; ?>><?php _e( 'Hide Automatic Ads on Post', 'adsense-owner-author-split' ); ?></option>
+								<option value="show-ads" <?php echo ( $show_selected ) ? 'selected' : ''; ?>><?php _e( 'Show Automatic Ads on Post', 'owner-author-ad-split' ); ?></option>
+								<option value="hide-ads" <?php echo ( $hide_selected ) ? 'selected' : ''; ?>><?php _e( 'Hide Automatic Ads on Post', 'owner-author-ad-split' ); ?></option>
 							</select>
 							</label>
 						</p>
@@ -91,7 +91,7 @@ class Metabox {
 					<td>
 						<p class="description">
 							<?php
-								_e( 'This option determines whether the automatic above and below content ads will display on this post', 'adsense-owner-author-split' );
+								_e( 'This option determines whether the automatic above and below content ads will display on this post', 'owner-author-ad-split' );
 							?>
 						</p>
 					</td>
@@ -151,7 +151,7 @@ class Metabox {
 
 		$profile_link = get_edit_user_link( get_current_user_id() );
 
-		echo '<a href="' . $profile_link . '#aoas-profile-settings" target="_blank">' . __( 'Update Your Ad Codes', 'adsense-owner-author-split') . '</a>';
+		echo '<a href="' . $profile_link . '#aoas-profile-settings" target="_blank">' . __( 'Update Your Ad Codes', 'owner-author-ad-split') . '</a>';
 
 	}
 

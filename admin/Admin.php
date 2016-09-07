@@ -4,12 +4,12 @@
  * our plugin
  *
  * @since      1.0.0
- * @package    adsense-owner-author-split
- * @subpackage adsense-owner-author-split/admin
+ * @package    owner-author-ad-split
+ * @subpackage owner-author-ad-split/admin
  * @author     Josh Mallard <josh@limecuda.com>
  */
 
-namespace GingerBeard\Adsense_Owner_Author_Split\Admin;
+namespace LimeCuda\Owner_Author_Ad_Split\Admin;
 
 class Admin {
 

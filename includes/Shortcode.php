@@ -3,12 +3,12 @@
  * Builds the shortcode for displaying ads in posts
  *
  * @since      1.0.0
- * @package    adsense-owner-author-split
- * @subpackage adsense-owner-author-split/includes
+ * @package    owner-author-ad-split
+ * @subpackage owner-author-ad-split/includes
  * @author     Josh Mallard <josh@limecuda.com>
  */
 
-namespace GingerBeard\Adsense_Owner_Author_Split\Shortcode;
+namespace LimeCuda\Owner_Author_Ad_Split\Shortcode;
 
 class Shortcode {
 
@@ -94,7 +94,7 @@ class Shortcode {
 		}
 
 		// Localize the script with all of our ads and weights
-		wp_localize_script( 'gb-adsense-shortcode-split', 'GINGERBEARD_SHORTCODE_ADS', array(
+		wp_localize_script( 'gb-adsense-shortcode-split', 'LC_SHORTCODE_ADS', array(
 			'owner_shortcode_ad'      => $this->owner_shortcode_ad,
 			'owner_shortcode_weight'  => $this->owner_shortcode_weight,
 			'author_shortcode_ad'     => $this->author_shortcode_ad
@@ -120,7 +120,7 @@ class Shortcode {
 		if( ! function_exists( 'genesis_get_option' ) )
 			return;
 
-		$owner_weight = genesis_get_option( 'owner_shortcode_weight', 'gingerbeard_adsense_settings_field' );
+		$owner_weight = genesis_get_option( 'owner_shortcode_weight', 'lc_ad_split_settings_field' );
 
 		if( isset( $owner_weight ) ) {
 			$this->owner_shortcode_weight = $owner_weight;
@@ -139,7 +139,7 @@ class Shortcode {
 		if( ! function_exists( 'genesis_get_option' ) )
 			return;
 
-		$owner_shortcode = genesis_get_option( 'owner_shortcode_adsense_code', 'gingerbeard_adsense_settings_field' );
+		$owner_shortcode = genesis_get_option( 'owner_shortcode_adsense_code', 'lc_ad_split_settings_field' );
 
 		if( isset( $owner_shortcode ) ) {
 			$this->owner_shortcode_ad = $owner_shortcode;
