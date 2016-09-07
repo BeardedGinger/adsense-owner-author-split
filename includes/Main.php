@@ -40,7 +40,7 @@ class Owner_Author_Ad_Split {
 	public function __construct() {
 
 		// shortcode
-		add_action( 'after_setup_theme', array( $this, 'ad_shortcode' ) );
+		add_action( 'after_setup_theme', array( $this, 'ad_shortcodes' ) );
 
 		// place the content ads
 		add_action( 'after_setup_theme', array( $this, 'place_content_ads' ) );
@@ -69,11 +69,13 @@ class Owner_Author_Ad_Split {
 	 * @since     1.0.0
 	 * @access    public
 	 */
-	public function ad_shortcode() {
+	public function ad_shortcodes() {
 
 		require plugin_dir_path( __FILE__ ) . 'Shortcode.php';
 
+		add_shortcode( 'gb_ad_above', array( $this, 'before_content_ad_shortcode' ) );
 		add_shortcode( 'gb_ad', array( Shortcode\Shortcode::instance(), 'build_shortcode' ) );
+		add_shortcode( 'gb_ad_below', array( $this, 'below_content_ad_shortcode' ) );
 
 	}
 
@@ -135,6 +137,28 @@ class Owner_Author_Ad_Split {
 	}
 
 	/**
+	 * The shortcode for displaying the above content ad
+	 *
+	 * @since     1.2.0
+	 * @access    public
+	 */
+	public function before_content_ad_shortcode() {
+
+		$hide_post = get_post_meta( get_the_ID(), 'gb_adsense_hide_content_ads', true );
+
+		// Don't output the shortcode if the post is set to show the default ads.
+		if ( 'show-ads' === $hide_post )
+			return;
+
+		ob_start();
+
+			echo '<div class="gb-ad gb-above-ad"><script>document.write(aboveAdsSplit[Math.floor(Math.random()*10)]);</script></div>';
+
+		return ob_get_clean();
+
+	}
+
+	/**
 	 * Below content ad
 	 *
 	 * @since     1.0.0
@@ -154,6 +178,28 @@ class Owner_Author_Ad_Split {
 			return;
 
 		echo '<div class="gb-ad gb-below-ad"><script>document.write(belowAdsSplit[Math.floor(Math.random()*10)]);</script></div>';
+	}
+
+	/**
+	 * The shortcode for displaying the below content ad
+	 *
+	 * @since     1.2.0
+	 * @access    public
+	 */
+	public function below_content_ad_shortcode() {
+
+		$hide_post = get_post_meta( get_the_ID(), 'gb_adsense_hide_content_ads', true );
+
+		// Don't output the shortcode if the post is set to show the default ads.
+		if ( 'show-ads' === $hide_post )
+			return;
+
+		ob_start();
+
+			echo '<div class="gb-ad gb-below-ad"><script>document.write(belowAdsSplit[Math.floor(Math.random()*10)]);</script></div>';
+
+		return ob_get_clean();
+
 	}
 
  }
