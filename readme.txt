@@ -56,6 +56,10 @@ Set the post author ads on their profile page
 
 == Changelog ==
 
+= 1.2.0 =
+* Added shortcodes for above and below content ads ([gb_ad_above], [gb_ad_below])
+* Option to automatically include content ad in WYSIWYG of post draft
+
 = 1.1.0 =
 * Update shortcode ad wording to "Content Ad"
 * Added shortcode reference to global settings page
