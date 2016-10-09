@@ -4,7 +4,7 @@ Donate link: http://joshmallard.com
 Tags: genesis, adsense, ads
 Requires at least: 4.2
 Tested up to: 4.5.2
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -55,6 +55,10 @@ Set the site owner ads and display weight
 Set the post author ads on their profile page
 
 == Changelog ==
+
+= 1.2.0 =
+* Added shortcodes for above and below content ads ([gb_ad_above], [gb_ad_below])
+* Option to automatically include content ad in WYSIWYG of post draft
 
 = 1.1.0 =
 * Update shortcode ad wording to "Content Ad"
