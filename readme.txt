@@ -1,9 +1,9 @@
 === Owner/Author Ad Split for Genesis===
-Contributors: joshlimecuda
-Donate link: http://joshmallard.com
-Tags: genesis, adsense, ads
+Contributors: joshlimecuda, imeson
+Donate link: https://fewerthanthree.com
+Tags: genesis, adsense, ads, ad sharing
 Requires at least: 4.2
-Tested up to: 4.5.2
+Tested up to: 4.6.1
 Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -14,7 +14,7 @@ Allow authors to share ad space for their posts on your blog and set how often y
 
 Built specifically for use with the [Genesis Framework](http://joshmallard.com/genesis-link), the Owner/Author Ad Split plugin allows your blog authors to share in the ad space for their blog posts on your site.
 
-The plugin has the option to include ad spaces by default above and below the post content as well as within the post content via the `[gb_ad]` shortcode.
+The plugin has the option to include ad spaces by default above and below the post content as well as within the post content via the `[gb_ad]`, `[gb_ad_above]`, & `[gb_ad_below]` shortcode.
 
 = Ad Codes & Weights =
 
@@ -51,8 +51,8 @@ Setting of the ad codes is limited to users that have the ability to save unfilt
 
 == Screenshots ==
 
-Set the site owner ads and display weight
-Set the post author ads on their profile page
+1. Set the site owner ads and display weight
+2. Set the post author ads on their profile page
 
 == Changelog ==
 

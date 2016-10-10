@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name:     Owner/Author Ad Split for Genesis
- * Plugin URI:      http://fewerthanthree.com/plugin/ownerauthor-ad-split-for-genesis
+ * Plugin URI:      https://fewerthanthree.com/plugin/ownerauthor-ad-split-for-genesis
  * Description:     Built specifically for use with the Genesis Framework, split ad space with post author and set how often your ad displays vs the post author's ad
  * Version:         1.2.0
  * Author:          Josh Mallard
- * Author URI:      http://fewerthanthree.com
+ * Author URI:      https://fewerthanthree.com
  * License:         GPL-2.0+
  * License URI:     http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:     owner-author-ad-split
